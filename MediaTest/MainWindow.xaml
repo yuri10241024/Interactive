@@ -1,0 +1,29 @@
+﻿<Window x:Class="MediaTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MediaTest"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="1080" Width="1920">
+    <Grid>
+        
+        <Canvas>
+            <Border CornerRadius="100">
+                <MediaElement Name="player" Height="720" Width="1280" LoadedBehavior="Play" >
+
+                </MediaElement>
+            </Border>
+            
+            <Button x:Name="qwerty" FontSize="100" Canvas.Top="300 ">
+                qwerty
+            </Button>
+        </Canvas>
+        
+            <!--Border Background="Goldenrod" CornerRadius="200,100,200,100">
+            <TextBlock Name ="hw" Background="BlueViolet" Height="200" Width="675" MouseDown="MouseDown" FontSize="100" MouseEnter="ME" MouseLeave="leave" >
+            HELLO WORLD
+            </TextBlock>
+        </-->
+    </Grid>
+</Window>
