@@ -1,0 +1,53 @@
+﻿<Window x:Class="Interactive_moive.AboutUs"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Interactive_moive"
+        WindowStyle="None"
+        WindowState="Maximized"
+        mc:Ignorable="d"
+        Title="AboutUs" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*">
+                
+            </ColumnDefinition>
+
+            <ColumnDefinition Width="1700">
+                
+            </ColumnDefinition>
+
+            <ColumnDefinition Width="*">
+                
+            </ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            
+            <RowDefinition Height="*">
+                
+            </RowDefinition>
+            
+            <RowDefinition Height="50">
+                
+            </RowDefinition>
+            
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation='Horizontal' HorizontalAlignment="Center" Grid.Column="1">
+            <TextBlock FontWeight="Medium" FontFamily="Century Gothic" Name="TBAboutUs" Foreground="DarkGray" FontSize="40"></TextBlock>
+        </StackPanel>
+        
+        
+        <Button Grid.Row="1" x:Name="back" Click="back_Click" Grid.Column="0" Width="70" Height="50" HorizontalAlignment="Left" Grid.ColumnSpan="2" Background="Bisque">
+            <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+                <Image Source="C:\Lev S test\Images\1486348526-arrow-back-backwards-repeat-previous_80453.png" Width="20" Height="20"/>
+        </Button>
+
+    </Grid>
+</Window>
