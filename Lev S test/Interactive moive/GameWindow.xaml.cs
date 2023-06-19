@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Newtonsoft.Json;
 
 namespace Interactive_moive
 {
@@ -24,6 +25,8 @@ namespace Interactive_moive
         public GameWindow()
         {
             InitializeComponent();
+            MainPlayer.Source = new Uri(@"C:\Users\USER\Downloads\futaj-simvoli-monitora-sekundomer-2_(VIDEOMIN.NET).mp4");
+            MainPlayer.MediaEnded += EndVideo;
 
         }
 
@@ -33,6 +36,13 @@ namespace Interactive_moive
             {
                 parent.Close();
             }
+        }
+
+        private void EndVideo(object sender, RoutedEventArgs e)
+        {
+            BSelected1.Visibility = Visibility.Visible;
+            BSelected2.Visibility = Visibility.Visible;
+            BSelected3.Visibility = Visibility.Visible;
         }
 
         private void Border_MouseDown3(object sender, MouseButtonEventArgs e)

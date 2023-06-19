@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Newtonsoft.Json;
+using System.IO;
+using System.Threading;
 
 namespace Interactive_moive
 {
@@ -20,9 +23,13 @@ namespace Interactive_moive
     /// </summary>
     public partial class MainWindow : Window
     {
+        public string PathToProject = @"E:\Programming\InteractiveMovie\Lev S test";
         public MainWindow()
         {
             InitializeComponent();
+
+            TestScene2();
+
 
         }
 
@@ -38,6 +45,29 @@ namespace Interactive_moive
             test1.parent = this;
             test1.ShowDialog();
             MessageBox.Show("Спасибо за внимание");
+        }
+
+        void TestScene()
+        {
+            Scene test1 = new Scene();
+            test1.buttonText = new string[3];
+            test1.countScene = 1;
+            test1.pathToVideo = "fhwds";
+
+            string str = JsonConvert.SerializeObject(test1);
+
+            File.WriteAllText(@"C:\test1!!!", str);
+        }
+
+        void TestScene2()
+        {
+            Scene test1;
+
+
+            string str = File.ReadAllText(@"E:\Programming\InteractiveMovie\Lev S test\Interactive moive\bin\Debug\testJson.json");
+
+            test1 = JsonConvert.DeserializeObject<Scene>(str);
+        
         }
     }
 }
