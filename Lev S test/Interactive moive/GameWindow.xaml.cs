@@ -27,7 +27,7 @@ namespace Interactive_moive
             InitializeComponent();
             MainPlayer.Source = new Uri(@"C:\Users\USER\Downloads\futaj-simvoli-monitora-sekundomer-2_(VIDEOMIN.NET).mp4");
             MainPlayer.MediaEnded += EndVideo;
-
+            
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -38,11 +38,32 @@ namespace Interactive_moive
             }
         }
 
+        void ShowScene(Scene scene)
+        {
+            BSelected1.Visibility = Visibility.Collapsed;
+            BSelected2.Visibility = Visibility.Collapsed;
+            BSelected3.Visibility = Visibility.Collapsed;
+
+            TBSelect1.Text = scene.buttonText[0];
+            TBSelect2.Text = scene.buttonText[1];
+            TBSelect3.Text = scene.buttonText[2];
+
+            
+
+        }
+
         private void EndVideo(object sender, RoutedEventArgs e)
         {
+            if (!string.IsNullOrEmpty(TBSelect2.Text))
+            {
+                BSelected2.Visibility = Visibility.Visible;
+            }
+            if (!string.IsNullOrEmpty(TBSelect3.Text))
+            {
+                BSelected3.Visibility = Visibility.Visible;
+            }
+
             BSelected1.Visibility = Visibility.Visible;
-            BSelected2.Visibility = Visibility.Visible;
-            BSelected3.Visibility = Visibility.Visible;
         }
 
         private void Border_MouseDown3(object sender, MouseButtonEventArgs e)

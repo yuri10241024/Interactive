@@ -3,6 +3,7 @@ using System.IO;
 
 namespace Interactive_moive
 {
+
     public class Scene
     {
         [JsonProperty ("pathToVideo")]
@@ -14,12 +15,16 @@ namespace Interactive_moive
         [JsonProperty("buttonText")]
         public string[] buttonText { get; set; }
 
+        [JsonProperty("variants")]
+        public int[] Variants { get; set; }
 
         void SerealiseScene(string PathToScene)
         {
             string[] str = File.ReadAllLines(PathToScene);
             
         }
+
+        
 
     }
 

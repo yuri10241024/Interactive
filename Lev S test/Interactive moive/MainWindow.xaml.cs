@@ -30,7 +30,6 @@ namespace Interactive_moive
 
             TestScene2();
 
-
         }
 
         private void AboutUSBTN_Click(object sender, RoutedEventArgs e)
