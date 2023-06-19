@@ -17,6 +17,8 @@ namespace Interactive_moive
 
         [JsonProperty("variants")]
         public int[] Variants { get; set; }
+        
+        
 
         void SerealiseScene(string PathToScene)
         {

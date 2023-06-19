@@ -25,7 +25,8 @@ namespace Interactive_moive
         public GameWindow()
         {
             InitializeComponent();
-            MainPlayer.Source = new Uri(@"C:\Users\USER\Downloads\futaj-simvoli-monitora-sekundomer-2_(VIDEOMIN.NET).mp4");
+            GetScene(1);
+            //MainPlayer.Source = new Uri(@"C:\Users\USER\Downloads\futaj-simvoli-monitora-sekundomer-2_(VIDEOMIN.NET).mp4");
             MainPlayer.MediaEnded += EndVideo;
             
         }
@@ -47,9 +48,30 @@ namespace Interactive_moive
             TBSelect1.Text = scene.buttonText[0];
             TBSelect2.Text = scene.buttonText[1];
             TBSelect3.Text = scene.buttonText[2];
+        }
 
-            
+        Scene GetScene(int Num)
+        {
+            Scene S = null;
+            if (Num == 1)
+            {
+                S = new Scene();
+                
 
+                S.pathToVideo = @"E:\100\9 день\C0208.MP4";
+
+                S.buttonText = new string[3];
+                S.buttonText[0]= "Конец";
+                S.buttonText[1]= "Не конец";
+
+                S.Variants = new int[3];
+
+                S.Variants[0] = 1;//Номер сцены к которому мы перейдем в случае нажатия
+                S.Variants[1] = 2;
+
+                S.countScene = 1;
+            }
+            return S;
         }
 
         private void EndVideo(object sender, RoutedEventArgs e)
