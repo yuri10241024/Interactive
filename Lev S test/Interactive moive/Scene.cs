@@ -17,13 +17,13 @@ namespace Interactive_moive
 
         [JsonProperty("variants")]
         public int[] Variants { get; set; }
-        
-        
+
+        [JsonProperty("intermediateVideo")]
+        public string IntermediateVideo { get; set; } //К хардкоду
 
         void SerealiseScene(string PathToScene)
         {
             string[] str = File.ReadAllLines(PathToScene);
-            
         }
 
         

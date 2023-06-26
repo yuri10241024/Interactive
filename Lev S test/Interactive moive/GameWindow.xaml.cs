@@ -22,13 +22,15 @@ namespace Interactive_moive
     {
         public Window parent = null;//инфа о любом окне.
 
+        Scene CurrentScene;
+        public bool IsMain;
+
         public GameWindow()
         {
             InitializeComponent();
-            GetScene(1);
             //MainPlayer.Source = new Uri(@"C:\Users\USER\Downloads\futaj-simvoli-monitora-sekundomer-2_(VIDEOMIN.NET).mp4");
             MainPlayer.MediaEnded += EndVideo;
-            
+            ShowScene(GetScene(1));
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -41,6 +43,9 @@ namespace Interactive_moive
 
         void ShowScene(Scene scene)
         {
+            IsMain = true;
+            CurrentScene = scene;
+
             BSelected1.Visibility = Visibility.Collapsed;
             BSelected2.Visibility = Visibility.Collapsed;
             BSelected3.Visibility = Visibility.Collapsed;
@@ -48,6 +53,9 @@ namespace Interactive_moive
             TBSelect1.Text = scene.buttonText[0];
             TBSelect2.Text = scene.buttonText[1];
             TBSelect3.Text = scene.buttonText[2];
+
+            MainPlayer.Source = new Uri (scene.pathToVideo);
+            MainPlayer.Play();
         }
 
         Scene GetScene(int Num)
@@ -56,21 +64,23 @@ namespace Interactive_moive
             if (Num == 1)
             {
                 S = new Scene();
-                
 
-                S.pathToVideo = @"E:\100\9 день\C0208.MP4";
+                S.IntermediateVideo= @"E:\Видео для программирования\Тест для ИФ123_1\Готовое\Выбор варианта 1.mp4";
+
+                S.pathToVideo = @"E:\Видео для программирования\Тест для ИФ123_1\Готовое\Начало игры.mp4";
 
                 S.buttonText = new string[3];
-                S.buttonText[0]= "Конец";
-                S.buttonText[1]= "Не конец";
+                S.buttonText[0]= "Разбудить";
+                S.buttonText[1]= "Пощадить";
 
                 S.Variants = new int[3];
 
-                S.Variants[0] = 1;//Номер сцены к которому мы перейдем в случае нажатия
-                S.Variants[1] = 2;
+                S.Variants[0] = 2;//Номер сцены к которому мы перейдем в случае нажатия
+                S.Variants[1] = 3;
 
                 S.countScene = 1;
             }
+
             return S;
         }
 

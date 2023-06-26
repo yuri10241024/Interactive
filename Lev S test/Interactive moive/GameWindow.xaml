@@ -20,7 +20,7 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="100"></RowDefinition>
         </Grid.RowDefinitions>
-        <MediaElement Name="MainPlayer" LoadedBehavior="Play" Grid.ColumnSpan="3"
+        <MediaElement Name="MainPlayer" LoadedBehavior="Manual" Grid.ColumnSpan="3"
                       Grid.RowSpan="2">
 
         </MediaElement>
