@@ -26,7 +26,7 @@ namespace Interactive_moive
 
         
 
-        public string PathToProject = @"E:\Programming\InteractiveMovie\Lev S test";
+        public string PathToProject = @"E:\_STUDIOS\VISUAL_STUDIO\Programming\InteractiveMovie\Lev S test";
         public MainWindow()
         {
             InitializeComponent();
@@ -66,7 +66,7 @@ namespace Interactive_moive
             Scene test1;
 
 
-            string str = File.ReadAllText(@"E:\Programming\InteractiveMovie\Lev S test\Interactive moive\bin\Debug\testJson.json");
+            string str = File.ReadAllText(@"E:\_STUDIOS\VISUAL_STUDIO\Programming\InteractiveMovie\Lev S test\Interactive moive\bin\Debug\testJson.json");
 
             test1 = JsonConvert.DeserializeObject<Scene>(str);
         

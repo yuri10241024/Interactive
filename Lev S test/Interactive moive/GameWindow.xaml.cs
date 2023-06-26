@@ -65,9 +65,9 @@ namespace Interactive_moive
             {
                 S = new Scene();
 
-                S.IntermediateVideo= @"E:\Видео для программирования\Тест для ИФ123_1\Готовое\Выбор варианта 1.mp4";
+                S.IntermediateVideo= @"E:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\Выбор варианта 1.mp4";
 
-                S.pathToVideo = @"E:\Видео для программирования\Тест для ИФ123_1\Готовое\Начало игры.mp4";
+                S.pathToVideo = @"E:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\Начало игры.mp4";
 
                 S.buttonText = new string[3];
                 S.buttonText[0]= "Разбудить";
@@ -77,6 +77,54 @@ namespace Interactive_moive
 
                 S.Variants[0] = 2;//Номер сцены к которому мы перейдем в случае нажатия
                 S.Variants[1] = 3;
+
+                S.countScene = 1;
+            }
+            if (Num == 2)
+            {
+                S = new Scene();
+
+                S.IntermediateVideo = @"E:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\Выбор варианта 2.mp4";
+
+                S.pathToVideo = @"E:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\Разбудить.mp4";
+
+                S.buttonText = new string[3];
+                S.buttonText[0] = "Конец";
+
+                S.Variants = new int[3];
+
+                S.Variants[0] = 4;//Номер сцены к которому мы перейдем в случае нажатия
+
+                S.countScene = 1;
+            }
+            if (Num == 3)
+            {
+                S = new Scene();
+
+                S.IntermediateVideo = @"E:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\Выбор варианта 2.mp4";
+
+                S.pathToVideo = @"E:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\Пощадить.mp4";
+
+                S.buttonText = new string[3];
+                S.buttonText[0] = "Конец";
+
+                S.Variants = new int[3];
+
+                S.Variants[0] = 4;//Номер сцены к которому мы перейдем в случае нажатия
+
+                S.countScene = 1;
+            }
+            if (Num == 3)
+            {
+                S = new Scene();
+
+                S.pathToVideo = @"E:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\Конец.mp4";
+
+                S.buttonText = new string[3];
+
+                S.Variants = new int[3];
+
+                S.Variants[0] = 4;//Номер сцены к которому мы перейдем в случае нажатия
 
                 S.countScene = 1;
             }
