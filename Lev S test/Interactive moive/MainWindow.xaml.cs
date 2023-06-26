@@ -24,15 +24,12 @@ namespace Interactive_moive
     public partial class MainWindow : Window
     {
 
-        
-
         public string PathToProject = @"E:\_STUDIOS\VISUAL_STUDIO\Programming\InteractiveMovie\Lev S test";
         public MainWindow()
         {
             InitializeComponent();
 
             TestScene2();
-
         }
 
         private void AboutUSBTN_Click(object sender, RoutedEventArgs e)

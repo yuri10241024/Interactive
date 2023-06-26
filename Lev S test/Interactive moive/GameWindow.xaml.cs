@@ -65,7 +65,13 @@ namespace Interactive_moive
             {
                 S = new Scene();
 
-                S.IntermediateVideo= @"E:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\Выбор варианта 1.mp4";
+                //https://drive.google.com/file/d/17VgEVf-pdvnFA12_0Wt8TcgXK2VN2-9Q/view?usp=sharing
+
+                //S.IntermediateVideo = "https://drive.google.com/file/d/17VgEVf-pdvnFA12_0Wt8TcgXK2VN2-9Q/view?usp=sharing";
+
+                S.IntermediateVideo = @"E:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\Выбор варианта 1.mp4";
+
+                //S.pathToVideo = "https://drive.google.com/file/d/17VgEVf-pdvnFA12_0Wt8TcgXK2VN2-9Q/view?usp=sharing";
 
                 S.pathToVideo = @"E:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\Начало игры.mp4";
 
@@ -95,7 +101,7 @@ namespace Interactive_moive
 
                 S.Variants[0] = 4;//Номер сцены к которому мы перейдем в случае нажатия
 
-                S.countScene = 1;
+                S.countScene = 2;
             }
             if (Num == 3)
             {
@@ -112,9 +118,9 @@ namespace Interactive_moive
 
                 S.Variants[0] = 4;//Номер сцены к которому мы перейдем в случае нажатия
 
-                S.countScene = 1;
+                S.countScene = 3;
             }
-            if (Num == 3)
+            if (Num == 4)
             {
                 S = new Scene();
 
@@ -126,7 +132,7 @@ namespace Interactive_moive
 
                 S.Variants[0] = 4;//Номер сцены к которому мы перейдем в случае нажатия
 
-                S.countScene = 1;
+                S.countScene = 4;
             }
 
             return S;
@@ -134,6 +140,16 @@ namespace Interactive_moive
 
         private void EndVideo(object sender, RoutedEventArgs e)
         {
+            if(string.IsNullOrEmpty(CurrentScene.IntermediateVideo))
+            {
+                Close();
+                return;
+            }
+
+            Uri U = new Uri(CurrentScene.IntermediateVideo);
+            MainPlayer.Source = new Uri(CurrentScene.IntermediateVideo);
+            MainPlayer.Play();
+
             if (!string.IsNullOrEmpty(TBSelect2.Text))
             {
                 BSelected2.Visibility = Visibility.Visible;
@@ -145,20 +161,22 @@ namespace Interactive_moive
 
             BSelected1.Visibility = Visibility.Visible;
         }
-
-        private void Border_MouseDown3(object sender, MouseButtonEventArgs e)
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show("Здравствуйте мир!");
+            MainPlayer.Stop();
+            ShowScene(GetScene(CurrentScene.Variants[0]));
         }
 
         private void Border_MouseDown2(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show("Здравствуйте мир2!");
+            MainPlayer.Stop();
+            ShowScene(GetScene(CurrentScene.Variants[1]));
         }
 
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Border_MouseDown3(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show("Здравствуйте мир3!");
+            MainPlayer.Stop();
+            ShowScene(GetScene(CurrentScene.Variants[2]));
         }
     }
 }
