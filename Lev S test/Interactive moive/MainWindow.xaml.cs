@@ -23,13 +23,13 @@ namespace Interactive_moive
     /// </summary>
     public partial class MainWindow : Window
     {
-        public string PathToProject = @"E:\Programming\InteractiveMovie\Lev S test";
+
+        public string PathToProject = @"E:\_STUDIOS\VISUAL_STUDIO\Programming\InteractiveMovie\Lev S test";
         public MainWindow()
         {
             InitializeComponent();
 
             TestScene2();
-
         }
 
         private void AboutUSBTN_Click(object sender, RoutedEventArgs e)
@@ -44,6 +44,7 @@ namespace Interactive_moive
             test1.parent = this;
             test1.ShowDialog();
             MessageBox.Show("Спасибо за внимание");
+            
         }
 
         void TestScene()
@@ -63,7 +64,7 @@ namespace Interactive_moive
             Scene test1;
 
 
-            string str = File.ReadAllText(@"E:\Programming\InteractiveMovie\Lev S test\Interactive moive\bin\Debug\testJson.json");
+            string str = File.ReadAllText(@"E:\_STUDIOS\VISUAL_STUDIO\Programming\InteractiveMovie\Lev S test\Interactive moive\bin\Debug\testJson.json");
 
             test1 = JsonConvert.DeserializeObject<Scene>(str);
         

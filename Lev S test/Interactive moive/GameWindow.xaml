@@ -7,7 +7,11 @@
         WindowStyle="None"
         WindowState="Maximized"
         mc:Ignorable="d"
-        Title="GameWindow" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="GameWindow" Height="450" Width="800" Loaded="Window_Loaded" Closed="Window_Closed">
+    
+    
+    
+    
     <Grid>
         
         <Grid.ColumnDefinitions>
@@ -15,23 +19,44 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
+        
+
 
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="100"></RowDefinition>
         </Grid.RowDefinitions>
-        <MediaElement Name="MainPlayer" LoadedBehavior="Play" Grid.ColumnSpan="3"
+
+
+        <MediaElement Name="MainPlayer" LoadedBehavior="Manual" Grid.ColumnSpan="3"
                       Grid.RowSpan="2">
 
         </MediaElement>
+        
+        <Rectangle Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" 
+                   Height="100" Width="1920"
+                   Fill="Gray" MouseEnter="Rectangle_MouseEnter" 
+                   MouseLeave="Rectangle_MouseLeave"
+                   Name="RecTg" Opacity="0">
+        </Rectangle>
+
+        <Button x:Name="BTNSkip" Grid.Column="2" Grid.Row="1"
+                Content="Пропустить" Width="100" Height="100"
+                HorizontalAlignment="Right" Opacity="0" Click="BTNSkip_Click">
+        </Button>
+
         <Border MouseDown="Border_MouseDown" Name="BSelected1" Grid.Column="0" Grid.Row="1" Height="70" Width="200" Background="Gainsboro" Visibility="Collapsed">
             <TextBlock x:Name="TBSelect1" Background="Gainsboro" TextAlignment="Center" Text="здравствуйте мир" FontSize="14" VerticalAlignment="Center"> </TextBlock>
         </Border>
+        
 
         <Border Name="BSelected2" MouseDown="Border_MouseDown2" Grid.Column="1" Grid.Row="1" Height="70" Width="200" Background="Gainsboro" Visibility="Collapsed">
             <TextBlock x:Name="TBSelect2" Background="Gainsboro"  TextAlignment="Center" Text="здравствуйте мир" FontSize="14" VerticalAlignment="Center"></TextBlock>
 
         </Border>
+        
+        
+        
         <Border MouseDown="Border_MouseDown3" Name="BSelected3" Grid.Column="2" Grid.Row="1" Height="70" Width="200" Background="Gainsboro" Visibility="Collapsed">
             <TextBlock x:Name="TBSelect3" Background="Gainsboro"  TextAlignment="Center" Text="здравствуйте мир" FontSize="14" VerticalAlignment="Center"></TextBlock>
         </Border>
