@@ -17,7 +17,7 @@ namespace Interactive_moive
 {
     /// <summary>
     /// Interaction logic for GameWindow.xaml
-    /// </summary>
+    /// </summary>  
     public partial class GameWindow : Window
     {
         public Window parent = null;//инфа о любом окне.
@@ -37,12 +37,14 @@ namespace Interactive_moive
         {
             if (parent != null)
             {
-                parent.Close();
+                parent.Visibility = Visibility.Hidden;
             }
         }
 
         void ShowScene(Scene scene)
         {
+            BTNSkip.Visibility = Visibility.Visible;
+
             IsMain = true;
             CurrentScene = scene;
 
@@ -146,6 +148,8 @@ namespace Interactive_moive
                 return;
             }
 
+            BTNSkip.Visibility = Visibility.Collapsed;
+
             Uri U = new Uri(CurrentScene.IntermediateVideo);
             MainPlayer.Source = new Uri(CurrentScene.IntermediateVideo);
             MainPlayer.Play();
@@ -177,6 +181,27 @@ namespace Interactive_moive
         {
             MainPlayer.Stop();
             ShowScene(GetScene(CurrentScene.Variants[2]));
+        }
+        
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            parent.Visibility = Visibility.Visible;
+        }
+
+        private void Rectangle_MouseEnter(object sender, MouseEventArgs e)
+        {
+            BTNSkip.Opacity = 0.9;
+        }
+
+        private void Rectangle_MouseLeave(object sender, MouseEventArgs e)
+        {
+            BTNSkip.Opacity = 0;
+
+        }
+
+        private void BTNSkip_Click(object sender, RoutedEventArgs e)
+        {
+            EndVideo(null, null);
         }
     }
 }

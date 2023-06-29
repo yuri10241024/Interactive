@@ -44,6 +44,7 @@ namespace Interactive_moive
             test1.parent = this;
             test1.ShowDialog();
             MessageBox.Show("Спасибо за внимание");
+            
         }
 
         void TestScene()
