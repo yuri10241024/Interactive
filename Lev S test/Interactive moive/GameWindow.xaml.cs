@@ -196,12 +196,21 @@ namespace Interactive_moive
         private void Rectangle_MouseLeave(object sender, MouseEventArgs e)
         {
             BTNSkip.Opacity = 0;
-
         }
 
         private void BTNSkip_Click(object sender, RoutedEventArgs e)
         {
             EndVideo(null, null);
+        }
+
+        private void BTNSkip_MouseEnter(object sender, MouseEventArgs e)
+        {
+            BTNSkip.Opacity = 0.9;
+        }
+
+        private void BTNSkip_MouseLeave(object sender, MouseEventArgs e)
+        {
+            BTNSkip.Opacity = 0;
         }
     }
 }
