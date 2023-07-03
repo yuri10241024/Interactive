@@ -16,6 +16,7 @@ using Newtonsoft.Json;
 using System.IO;
 using System.Threading;
 
+
 namespace Interactive_moive
 {
     /// <summary>
@@ -23,15 +24,14 @@ namespace Interactive_moive
     /// </summary>
     public partial class MainWindow : Window
     {
-
         public string PathToProject = @"E:\_STUDIOS\VISUAL_STUDIO\Programming\InteractiveMovie\Lev S test";
         public MainWindow()
         {
             InitializeComponent();
-
+            MessageBox.Show(System.Windows.SystemParameters.PrimaryScreenWidth.ToString());
+            MessageBox.Show(System.Windows.SystemParameters.PrimaryScreenHeight.ToString());
             TestScene2();
         }
-
         private void AboutUSBTN_Click(object sender, RoutedEventArgs e)
         {
             AboutUs aboutUs = new AboutUs();
@@ -44,7 +44,6 @@ namespace Interactive_moive
             test1.parent = this;
             test1.ShowDialog();
             MessageBox.Show("Спасибо за внимание");
-            
         }
 
         void TestScene()
