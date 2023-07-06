@@ -16,7 +16,6 @@ using Newtonsoft.Json;
 using System.IO;
 using System.Threading;
 
-
 namespace Interactive_moive
 {
     /// <summary>
@@ -28,8 +27,8 @@ namespace Interactive_moive
         public MainWindow()
         {
             InitializeComponent();
-            MessageBox.Show(System.Windows.SystemParameters.PrimaryScreenWidth.ToString());
-            MessageBox.Show(System.Windows.SystemParameters.PrimaryScreenHeight.ToString());
+            //MessageBox.Show(System.Windows.SystemParameters.PrimaryScreenWidth.ToString());
+            //MessageBox.Show(System.Windows.SystemParameters.PrimaryScreenHeight.ToString());
             TestScene2();
         }
         private void AboutUSBTN_Click(object sender, RoutedEventArgs e)
@@ -37,7 +36,7 @@ namespace Interactive_moive
             AboutUs aboutUs = new AboutUs();
             aboutUs.ShowDialog();
         }
-        //if smth starts, close than open. 
+        //if smth starts, close than open.
         private void BTNnewGame_Click(object sender, RoutedEventArgs e)
         {
             GameWindow test1 = new GameWindow();
