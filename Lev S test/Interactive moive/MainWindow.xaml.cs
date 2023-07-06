@@ -23,28 +23,26 @@ namespace Interactive_moive
     /// </summary>
     public partial class MainWindow : Window
     {
-
         public string PathToProject = @"E:\_STUDIOS\VISUAL_STUDIO\Programming\InteractiveMovie\Lev S test";
         public MainWindow()
         {
             InitializeComponent();
-
+            //MessageBox.Show(System.Windows.SystemParameters.PrimaryScreenWidth.ToString());
+            //MessageBox.Show(System.Windows.SystemParameters.PrimaryScreenHeight.ToString());
             TestScene2();
         }
-
         private void AboutUSBTN_Click(object sender, RoutedEventArgs e)
         {
             AboutUs aboutUs = new AboutUs();
             aboutUs.ShowDialog();
         }
-        //if smth starts, close than open. 
+        //if smth starts, close than open.
         private void BTNnewGame_Click(object sender, RoutedEventArgs e)
         {
             GameWindow test1 = new GameWindow();
             test1.parent = this;
             test1.ShowDialog();
             MessageBox.Show("Спасибо за внимание");
-            
         }
 
         void TestScene()
