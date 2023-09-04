@@ -28,10 +28,9 @@ namespace Interactive_moive
         public GameWindow()
         {
             InitializeComponent();
-            //MainPlayer.Source = new Uri(@"C:\Users\USER\Downloads\futaj-simvoli-monitora-sekundomer-2_(VIDEOMIN.NET).mp4");
             MainPlayer.MediaEnded += EndVideo;
             ShowScene(GetScene(1));
-        }
+        } 
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -71,11 +70,11 @@ namespace Interactive_moive
 
                 //S.IntermediateVideo = "https://drive.google.com/file/d/17VgEVf-pdvnFA12_0Wt8TcgXK2VN2-9Q/view?usp=sharing";
 
-                S.IntermediateVideo = @"E:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\Выбор варианта 1.mp4";
+                S.IntermediateVideo = @"D:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\Выбор варианта 1.mp4";
 
                 //S.pathToVideo = "https://drive.google.com/file/d/17VgEVf-pdvnFA12_0Wt8TcgXK2VN2-9Q/view?usp=sharing";
 
-                S.pathToVideo = @"E:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\Начало игры.mp4";
+                S.pathToVideo = @"D:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\Начало игры.mp4";
 
                 S.buttonText = new string[3];
                 S.buttonText[0]= "Разбудить";
@@ -92,9 +91,9 @@ namespace Interactive_moive
             {
                 S = new Scene();
 
-                S.IntermediateVideo = @"E:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\Выбор варианта 2.mp4";
+                S.IntermediateVideo = @"D:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\Выбор варианта 2.mp4";
 
-                S.pathToVideo = @"E:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\Разбудить.mp4";
+                S.pathToVideo = @"D:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\Разбудить.mp4";
 
                 S.buttonText = new string[3];
                 S.buttonText[0] = "Конец";
@@ -109,9 +108,9 @@ namespace Interactive_moive
             {
                 S = new Scene();
 
-                S.IntermediateVideo = @"E:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\Выбор варианта 2.mp4";
+                S.IntermediateVideo = @"D:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\Выбор варианта 2.mp4";
 
-                S.pathToVideo = @"E:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\Пощадить.mp4";
+                S.pathToVideo = @"D:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\Пощадить.mp4";
 
                 S.buttonText = new string[3];
                 S.buttonText[0] = "Конец";
@@ -126,7 +125,7 @@ namespace Interactive_moive
             {
                 S = new Scene();
 
-                S.pathToVideo = @"E:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\Конец.mp4";
+                S.pathToVideo = @"D:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\Конец.mp4";
 
                 S.buttonText = new string[3];
 
