@@ -1,0 +1,50 @@
+﻿<Window x:Class="GreatSceneEditor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GreatSceneEditor"
+        mc:Ignorable="d"
+        Title="MainWindow" WindowState="Maximized" Height="1080" Width="1920">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="500"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="0">
+            <Button Name="AddBTN"  Content="Add" ></Button>
+            <Button Name="LoadBTN" Content="Load"></Button>
+            <Button Content="+++" Name="AddSmth" Click="AddSmth_Click"></Button>
+            <Button Content="Load"></Button>
+
+        </StackPanel>
+
+        <ListBox Name="SceneList" Grid.Row="1" DisplayMemberPath="Title">
+            
+        </ListBox>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Название сцены: " Width="150" Margin="0,0,10,0"></TextBlock>
+                <TextBox x:Name="TitleOfSelectedItem" Text="Selected Item" GotFocus="TitleOfSelectedItem_GotFocus"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <TextBlock Text="ID сцены: " Width="150" Margin="0,0,10,0"></TextBlock>
+                <TextBox x:Name="ID" Text="Enter" TextChanged="ID_TextChanged"></TextBox>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <TextBlock Text="ID сцены: " Width="150" Margin="0,0,10,0"></TextBlock>
+                <Button Content="Выбрать" Margin="0,0,10,0"></Button>
+                <TextBlock x:Name="MainVideo" Text="Enter"></TextBlock>
+            </StackPanel>
+
+
+        </StackPanel>
+        
+    </Grid>
+</Window>

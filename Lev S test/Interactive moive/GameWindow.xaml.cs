@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Newtonsoft.Json;
+using Interactive_moive;
 
 namespace Interactive_moive
 {
@@ -31,7 +32,6 @@ namespace Interactive_moive
             MainPlayer.MediaEnded += EndVideo;
             ShowScene(GetScene(1));
         } 
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             if (parent != null)

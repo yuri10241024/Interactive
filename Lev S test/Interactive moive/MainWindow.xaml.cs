@@ -23,6 +23,7 @@ namespace Interactive_moive
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public string PathToProject = @"D:\_STUDIOS\VISUAL_STUDIO\Programming\InteractiveMovie\Lev S test";
         public MainWindow()
         {

@@ -6,10 +6,13 @@ namespace Interactive_moive
 
     public class Scene
     {
+        [JsonProperty ("Title")]
+        public string Title { get; set; }
+
         [JsonProperty ("pathToVideo")]
         public string pathToVideo { get; set; }
 
-        [JsonProperty("countScene")]
+        [JsonProperty("Number")]
         public int countScene { get; set; }
 
         [JsonProperty("buttonText")]
