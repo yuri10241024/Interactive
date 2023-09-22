@@ -28,8 +28,10 @@ namespace GreatSceneEditor
         public MainWindow()
         {
             InitializeComponent();
-            CreateTestQuest();
-            SceneList.ItemsSource = q.ListOfScenes;
+
+            VC1.TBVariantNum.Text = "Вариант 1";
+            VC2.TBVariantNum.Text = "Вариант 2";
+            VC3.TBVariantNum.Text = "Вариант 3";
         }
 
         void CreateTestQuest2()
