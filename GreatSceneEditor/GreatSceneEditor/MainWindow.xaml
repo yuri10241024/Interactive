@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GreatSceneEditor"
         mc:Ignorable="d"
-        Title="MainWindow" WindowState="Maximized" Height="1080" Width="1920">
+        Title="NewProject" WindowState="Maximized" Height="1080" Width="1920">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="500"/>
@@ -17,17 +17,17 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="0">
-            <Button Name="AddBTN"  Content="Add" ></Button>
-            <Button Name="LoadBTN" Content="Load"></Button>
-            <Button Content="+++" Name="AddSmth" Click="AddSmth_Click"></Button>
-            <Button Content="Load"></Button>
-
-        </StackPanel>
+            <Button Name="BTNNew"  Content="New" Click="BTNNew_Click"></Button>
+            <Button Name="BTNOpen" Content="Open"></Button>
+            <Button Content="SAVE" Name ="BTNSave"  BorderBrush="PaleVioletRed" Click="BTNSave_Click"></Button>
+            <Button Name="BTNAddScene" Content="Add Scene" BorderBrush="LightGreen" Click="BTNAddScene_Click"></Button>
+            <Button Content="Delete"></Button>
+            </StackPanel>
 
         <ListBox Name="SceneList" Grid.Row="1" DisplayMemberPath="Title">
             
         </ListBox>
-        <StackPanel Grid.Row="1" Grid.Column="1">
+        <StackPanel Grid.Row="1" Grid.Column="1" Name="SPTools">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Название сцены: " Width="150" Margin="0,0,10,0"></TextBlock>
                 <TextBox x:Name="TitleOfSelectedItem" Text="Selected Item" GotFocus="TitleOfSelectedItem_GotFocus"></TextBox>

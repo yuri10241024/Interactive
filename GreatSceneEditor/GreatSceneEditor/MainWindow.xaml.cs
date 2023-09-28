@@ -16,31 +16,25 @@ using Interactive_moive;
 using System.IO;
 using System.Collections.Generic;
 
-
 namespace GreatSceneEditor
 {
 
     public partial class MainWindow : Window
     {
         public Quest q;
-        public Quest vq;
+
+        public bool ProjectLoaded = false;
 
         public MainWindow()
         {
             InitializeComponent();
 
+            q = new Quest();
+
+
             VC1.TBVariantNum.Text = "Вариант 1";
             VC2.TBVariantNum.Text = "Вариант 2";
             VC3.TBVariantNum.Text = "Вариант 3";
-        }
-
-        void CreateTestQuest2()
-        {
-            vq = new Quest();
-            vq.ListOfScenes = new List<Scene>();
-            vq.PathToVideoFolder = @"D:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое";
-            Scene vs = new Scene();
-
         }
 
         void CreateTestQuest()
@@ -58,11 +52,6 @@ namespace GreatSceneEditor
 
         }
 
-        private void AddSmth_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void TitleOfSelectedItem_GotFocus(object sender, RoutedEventArgs e)
         {
             if (TitleOfSelectedItem.Text == "Selected Item")
@@ -71,6 +60,45 @@ namespace GreatSceneEditor
             }
         }
 
-        
+        private void BTNSave_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BTNAddScene_Click(object sender, RoutedEventArgs e)
+        {
+            NewScene ns = new NewScene();
+            ns.ShowDialog();
+            
+            Scene Sc = new Scene();
+            q.ListOfScenes.Add(Sc);
+            SceneList.ItemsSource = q.ListOfScenes;
+            
+            
+        }
+
+        private void BTNNew_Click(object sender, RoutedEventArgs e)
+        {
+            NewProjectWindow npw = new NewProjectWindow();
+            npw.ShowDialog();
+            
+
+            if (ProjectLoaded == true)
+            {
+                npw.Close();
+            }
+            else
+            {
+                if (npw.NPWState)
+                {
+                    this.Title = npw.TBProjectName.Text;
+                }
+                else
+                {
+                    SceneList.Visibility = Visibility.Hidden;
+                    SPTools.Visibility = Visibility.Hidden;
+                }
+            }
+        }
     }//D:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое
 }

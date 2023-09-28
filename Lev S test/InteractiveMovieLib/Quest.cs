@@ -8,5 +8,10 @@ namespace Interactive_moive
         public string PathToVideoFolder { get; set; }
 
         public List<Scene> ListOfScenes { get; set; }
+
+        public Quest()
+        {
+            ListOfScenes = new List<Scene>();
+        }
     }
 }
