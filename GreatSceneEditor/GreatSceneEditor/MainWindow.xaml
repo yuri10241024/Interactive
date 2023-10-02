@@ -19,7 +19,7 @@
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="0">
             <Button Name="BTNNew"  Content="New" Click="BTNNew_Click"></Button>
             <Button Name="BTNOpen" Content="Open"></Button>
-            <Button Content="SAVE" Name ="BTNSave"  BorderBrush="PaleVioletRed" Click="BTNSave_Click"></Button>
+            <Button Content="SAVE" Name ="BTNSave"  BorderBrush="PaleVioletRed" Click="BTNSave_Click" Height="20" VerticalAlignment="Bottom"></Button>
             <Button Name="BTNAddScene" Content="Add Scene" BorderBrush="LightGreen" Click="BTNAddScene_Click"></Button>
             <Button Content="Delete"></Button>
             </StackPanel>
@@ -48,10 +48,7 @@
                 <Button Content="Выбрать" Margin="0,0,10,0"></Button>
                 <TextBlock x:Name="EntermediateVideo" Text="File name"/>
             </StackPanel>
-
-            <local:VariantControl x:Name="VC1">
-                
-            </local:VariantControl>
+            <local:VariantControl x:Name="VC1"/>
 
             <local:VariantControl x:Name="VC2">
 

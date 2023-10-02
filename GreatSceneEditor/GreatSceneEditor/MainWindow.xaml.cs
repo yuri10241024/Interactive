@@ -18,7 +18,6 @@ using System.Collections.Generic;
 
 namespace GreatSceneEditor
 {
-
     public partial class MainWindow : Window
     {
         public Quest q;
@@ -36,7 +35,6 @@ namespace GreatSceneEditor
             VC2.TBVariantNum.Text = "Вариант 2";
             VC3.TBVariantNum.Text = "Вариант 3";
         }
-
         void CreateTestQuest()
         {
             q = new Quest();
@@ -49,9 +47,7 @@ namespace GreatSceneEditor
             s = new Scene();
             s.Title = "scene 2";
             q.ListOfScenes.Add(s);
-
         }
-
         private void TitleOfSelectedItem_GotFocus(object sender, RoutedEventArgs e)
         {
             if (TitleOfSelectedItem.Text == "Selected Item")
@@ -62,7 +58,8 @@ namespace GreatSceneEditor
 
         private void BTNSave_Click(object sender, RoutedEventArgs e)
         {
-
+            string JSON = JsonConvert.SerializeObject(q);
+            File.WriteAllText("Text.JSON", JSON);
         }
 
         private void BTNAddScene_Click(object sender, RoutedEventArgs e)
@@ -71,10 +68,9 @@ namespace GreatSceneEditor
             ns.ShowDialog();
             
             Scene Sc = new Scene();
+            Sc.Title = ns.TBSceneName.Text;//TODO:Исправить логическую ошибку
             q.ListOfScenes.Add(Sc);
             SceneList.ItemsSource = q.ListOfScenes;
-            
-            
         }
 
         private void BTNNew_Click(object sender, RoutedEventArgs e)
@@ -82,18 +78,27 @@ namespace GreatSceneEditor
             NewProjectWindow npw = new NewProjectWindow();
             npw.ShowDialog();
             
-
-            if (ProjectLoaded == true)
+            if(npw.NPWState)
             {
-                npw.Close();
+                this.Title = npw.TBProjectName.Text;
+                SceneList.Visibility = Visibility.Visible;
+                SPTools.Visibility = Visibility.Visible;
+                if (ProjectLoaded == true)
+                {
+                    //TODO:проверить что предидущий проект сохранён
+                }
+                q = new Quest();
+                TitleOfSelectedItem.Text = "";
+                ID.Text = "";
+                MainVideo.Text = "";//TODO: Обнулить текст(((
+
+                VC1.TBID.Text = "";
+                VC1.TBDescription.Text = "";
+
             }
             else
             {
-                if (npw.NPWState)
-                {
-                    this.Title = npw.TBProjectName.Text;
-                }
-                else
+                if (ProjectLoaded == false)
                 {
                     SceneList.Visibility = Visibility.Hidden;
                     SPTools.Visibility = Visibility.Hidden;
