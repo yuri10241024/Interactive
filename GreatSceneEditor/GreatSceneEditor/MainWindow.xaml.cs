@@ -15,6 +15,7 @@ using Newtonsoft.Json;
 using Interactive_moive;
 using System.IO;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace GreatSceneEditor
 {
@@ -24,11 +25,14 @@ namespace GreatSceneEditor
 
         public bool ProjectLoaded = false;
 
+        public ObservableCollection<Scene> OCScenes = new ObservableCollection<Scene>();
+
         public MainWindow()
         {
             InitializeComponent();
 
             q = new Quest();
+            SceneList.ItemsSource = OCScenes;
 
 
             VC1.TBVariantNum.Text = "Вариант 1";
@@ -70,9 +74,10 @@ namespace GreatSceneEditor
             Scene Sc = new Scene();
             Sc.Title = ns.TBSceneName.Text;//TODO:Исправить логическую ошибку
             q.ListOfScenes.Add(Sc);
-            SceneList.ItemsSource = q.ListOfScenes;
-        }
+            OCScenes.Add(Sc);//TODO: При смене сцены нужно сохранять изменённые данные
+            SceneList.SelectedIndex = OCScenes.Count - 1;
 
+        }
         private void BTNNew_Click(object sender, RoutedEventArgs e)
         {
             NewProjectWindow npw = new NewProjectWindow();
@@ -91,10 +96,13 @@ namespace GreatSceneEditor
                 TitleOfSelectedItem.Text = "";
                 ID.Text = "";
                 MainVideo.Text = "";//TODO: Обнулить текст(((
-
+                EntermediateVideo.Text = "";
                 VC1.TBID.Text = "";
                 VC1.TBDescription.Text = "";
-
+                VC2.TBID.Text = "";
+                VC2.TBDescription.Text = "";
+                VC3.TBID.Text = "";
+                VC3.TBDescription.Text = "";
             }
             else
             {
