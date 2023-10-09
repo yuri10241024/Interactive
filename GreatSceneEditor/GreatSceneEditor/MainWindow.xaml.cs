@@ -27,6 +27,7 @@ namespace GreatSceneEditor
 
         public ObservableCollection<Scene> OCScenes = new ObservableCollection<Scene>();
 
+        Scene SelectedScene;
         public MainWindow()
         {
             InitializeComponent();
@@ -72,7 +73,7 @@ namespace GreatSceneEditor
             ns.ShowDialog();
             
             Scene Sc = new Scene();
-            Sc.Title = ns.TBSceneName.Text;//TODO:Исправить логическую ошибку
+            Sc.Title = ns.TBSceneName.Text;
             q.ListOfScenes.Add(Sc);
             OCScenes.Add(Sc);//TODO: При смене сцены нужно сохранять изменённые данные
             SceneList.SelectedIndex = OCScenes.Count - 1;
@@ -112,6 +113,19 @@ namespace GreatSceneEditor
                     SPTools.Visibility = Visibility.Hidden;
                 }
             }
+        }
+
+        private void SceneList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {//TODO:Исключить потерю данных при переключении сцен. Т.е. проверить куда идёт какая ссылка.
+//В объект SelectedScene записываем актуальные данные, затем в SelectedScene сохраняем ссылку на выбранный элемент.
+//Список ItemSource, есть разные способы сохранять и работать с данными. 
+            //Хочется кататься на сноуборде
+            if (SceneList.SelectedIndex == -1)
+            {
+                return;
+            }
+            string Name = (SceneList.SelectedItem as Scene).Title;
+            MessageBox.Show(Name);
         }
     }//D:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое
 }

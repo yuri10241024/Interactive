@@ -24,7 +24,7 @@
             <Button Content="Delete"></Button>
             </StackPanel>
 
-        <ListBox Name="SceneList" Grid.Row="1" DisplayMemberPath="Title">
+        <ListBox Name="SceneList" Grid.Row="1" DisplayMemberPath="Title" SelectionChanged="SceneList_SelectionChanged">
             
         </ListBox>
         <StackPanel Grid.Row="1" Grid.Column="1" Name="SPTools">
