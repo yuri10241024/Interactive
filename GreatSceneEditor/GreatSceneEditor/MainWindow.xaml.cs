@@ -40,19 +40,7 @@ namespace GreatSceneEditor
             VC2.TBVariantNum.Text = "Вариант 2";
             VC3.TBVariantNum.Text = "Вариант 3";
         }
-        void CreateTestQuest()
-        {
-            q = new Quest();
-            q.ListOfScenes = new List<Scene>();
-            q.PathToVideoFolder = @"D:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое";
-            Scene s = new Scene();
-            s.Title = "scene 1";
-            q.ListOfScenes.Add(s);
-
-            s = new Scene();
-            s.Title = "scene 2";
-            q.ListOfScenes.Add(s);
-        }
+        
         private void TitleOfSelectedItem_GotFocus(object sender, RoutedEventArgs e)
         {
             if (TitleOfSelectedItem.Text == "Selected Item")
@@ -71,13 +59,18 @@ namespace GreatSceneEditor
         {
             NewScene ns = new NewScene();
             ns.ShowDialog();
-            
-            Scene Sc = new Scene();
-            Sc.Title = ns.TBSceneName.Text;
-            q.ListOfScenes.Add(Sc);
-            OCScenes.Add(Sc);//TODO: При смене сцены нужно сохранять изменённые данные
-            SceneList.SelectedIndex = OCScenes.Count - 1;
-
+            if(ns.IsCreated)
+            {
+                Scene Sc = new Scene();
+                Sc.Title = ns.TBSceneName.Text;
+                q.ListOfScenes.Add(Sc);
+                OCScenes.Add(Sc);//TODO: При смене сцены нужно сохранять изменённые данные
+                SceneList.SelectedIndex = OCScenes.Count - 1;
+            }
+            if (ns.IsCreated)
+            {
+                return;
+            }
         }
         private void BTNNew_Click(object sender, RoutedEventArgs e)
         {
@@ -115,17 +108,25 @@ namespace GreatSceneEditor
             }
         }
 
+        
         private void SceneList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {//TODO:Исключить потерю данных при переключении сцен. Т.е. проверить куда идёт какая ссылка.
 //В объект SelectedScene записываем актуальные данные, затем в SelectedScene сохраняем ссылку на выбранный элемент.
 //Список ItemSource, есть разные способы сохранять и работать с данными. 
             //Хочется кататься на сноуборде
+            
+
             if (SceneList.SelectedIndex == -1)
             {
                 return;
             }
-            string Name = (SceneList.SelectedItem as Scene).Title;
-            MessageBox.Show(Name);
+
+            Scene NewScene = (SceneList.SelectedItem as Scene);
+
+             
+            //SelectedScene.V
+
+            //MessageBox.Show(Name);
         }
     }//D:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое
 }

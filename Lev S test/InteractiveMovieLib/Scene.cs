@@ -1,25 +1,24 @@
 ﻿using Newtonsoft.Json;
 using System.IO;
+using System.Collections.Generic;
+
 
 namespace Interactive_moive
 {
 
     public class Scene
     {
-        [JsonProperty ("Title")]
+        [JsonProperty("Title")]
         public string Title { get; set; }
 
-        [JsonProperty ("pathToVideo")]
+        [JsonProperty("pathToVideo")]
         public string pathToVideo { get; set; }
 
         [JsonProperty("Number")]
         public int countScene { get; set; }
 
-        [JsonProperty("buttonText")]
-        public string[] buttonText { get; set; }
-
-        [JsonProperty("variants")]
-        public int[] Variants { get; set; }
+        [JsonProperty("ListOfVariants")]
+        public List<Variant> ListOfVariants { get; set; }
 
         [JsonProperty("intermediateVideo")]
         public string IntermediateVideo { get; set; } //К хардкоду

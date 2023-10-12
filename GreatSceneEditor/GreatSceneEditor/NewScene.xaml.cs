@@ -17,8 +17,11 @@ namespace GreatSceneEditor
     /// <summary>
     /// Interaction logic for NewScene.xaml
     /// </summary>
+    /// 
+    
     public partial class NewScene : Window
     {
+        public bool IsCreated;
         public NewScene()
         {
             InitializeComponent();
@@ -30,6 +33,19 @@ namespace GreatSceneEditor
             {
                 TBSceneName.Text = "";
             }
+        }
+
+        private void NSBTNCreate_Click(object sender, RoutedEventArgs e)
+        {
+            IsCreated = true;
+            this.Close();
+        }
+
+        private void NSBTNCancel_Click(object sender, RoutedEventArgs e)
+        {
+
+            IsCreated = false;
+            this.Close();
         }
     }
 }

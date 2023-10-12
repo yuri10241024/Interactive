@@ -51,9 +51,9 @@ namespace Interactive_moive
             BSelected2.Visibility = Visibility.Collapsed;
             BSelected3.Visibility = Visibility.Collapsed;
 
-            TBSelect1.Text = scene.buttonText[0];
-            TBSelect2.Text = scene.buttonText[1];
-            TBSelect3.Text = scene.buttonText[2];
+            TBSelect1.Text = scene.ListOfVariants[0].Description;
+            TBSelect2.Text = scene.ListOfVariants[1].Description;
+            TBSelect3.Text = scene.ListOfVariants[2].Description;
 
             MainPlayer.Source = new Uri (scene.pathToVideo);
             MainPlayer.Play();
@@ -76,14 +76,17 @@ namespace Interactive_moive
 
                 S.pathToVideo = @"D:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\Начало игры.mp4";
 
-                S.buttonText = new string[3];
-                S.buttonText[0]= "Разбудить";
-                S.buttonText[1]= "Пощадить";
+                S.ListOfVariants = new List<Variant>();
 
-                S.Variants = new int[3];
+                Variant v = new Variant();
+                v.Description = "Разбудить";
+                v.TargetID = 2;
+                S.ListOfVariants.Add(v);
 
-                S.Variants[0] = 2;//Номер сцены к которому мы перейдем в случае нажатия
-                S.Variants[1] = 3;
+                v = new Variant();
+                v.Description = "Пощадить";
+                v.TargetID = 3;
+                S.ListOfVariants.Add(v);
 
                 S.countScene = 1;
             }
