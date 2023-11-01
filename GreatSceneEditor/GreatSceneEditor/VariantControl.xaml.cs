@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Interactive_moive;
+
 
 namespace GreatSceneEditor
 {
@@ -20,9 +22,23 @@ namespace GreatSceneEditor
     /// </summary>
     public partial class VariantControl : UserControl
     {
+        List<VariantType> VariantTypes = new List<VariantType>();
+
         public VariantControl()
         {
             InitializeComponent();
+
+            //VariantTypes
+            VariantType V = new VariantType("Film","Фильм");
+            VariantTypes.Add(V);
+
+            V = new VariantType("Retry", "Повтор");
+            VariantTypes.Add(V);
+
+            V = new VariantType("Quit", "Завершить");
+            VariantTypes.Add(V);
+
+            CBVariants.ItemsSource = VariantTypes;
         }
 
         private void CBTurnOn_Click(object sender, RoutedEventArgs e)

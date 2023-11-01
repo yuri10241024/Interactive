@@ -20,16 +20,21 @@ namespace Interactive_moive
         [JsonProperty("ListOfVariants")]
         public List<Variant> ListOfVariants { get; set; }
 
+        [JsonProperty("IsFinalScene")]
+        public bool IsFinalScene { get; set; }
+
         [JsonProperty("intermediateVideo")]
         public string IntermediateVideo { get; set; } //К хардкоду
+
+        public Scene()
+        {
+            ListOfVariants = new List<Variant>();
+        }
 
         void SerealiseScene(string PathToScene)
         {
             string[] str = File.ReadAllLines(PathToScene);
         }
-
-        
-
     }
 
 }
