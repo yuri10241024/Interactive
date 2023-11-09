@@ -48,19 +48,19 @@
         </Button>
 
         <Border MouseDown="Border_MouseDown" Name="BSelected1" Grid.Column="0" Grid.Row="1" Height="70" Width="200" Background="Gainsboro" Visibility="Collapsed">
-            <TextBlock x:Name="TBSelect1" Background="Gainsboro" TextAlignment="Center" Text="здравствуйте мир" FontSize="14" VerticalAlignment="Center"> </TextBlock>
+            <TextBlock x:Name="TBSelect1" Background="Gainsboro" TextAlignment="Center"  FontSize="14" VerticalAlignment="Center"> </TextBlock>
         </Border>
         
 
         <Border Name="BSelected2" MouseDown="Border_MouseDown2" Grid.Column="1" Grid.Row="1" Height="70" Width="200" Background="Gainsboro" Visibility="Collapsed">
-            <TextBlock x:Name="TBSelect2" Background="Gainsboro"  TextAlignment="Center" Text="здравствуйте мир" FontSize="14" VerticalAlignment="Center"></TextBlock>
+            <TextBlock x:Name="TBSelect2" Background="Gainsboro"  TextAlignment="Center"  FontSize="14" VerticalAlignment="Center"></TextBlock>
 
         </Border>
         
         
         
         <Border MouseDown="Border_MouseDown3" Name="BSelected3" Grid.Column="2" Grid.Row="1" Height="70" Width="200" Background="Gainsboro" Visibility="Collapsed">
-            <TextBlock x:Name="TBSelect3" Background="Gainsboro"  TextAlignment="Center" Text="здравствуйте мир" FontSize="14" VerticalAlignment="Center"></TextBlock>
+            <TextBlock x:Name="TBSelect3" Background="Gainsboro"  TextAlignment="Center"  FontSize="14" VerticalAlignment="Center"></TextBlock>
         </Border>
         
     </Grid>

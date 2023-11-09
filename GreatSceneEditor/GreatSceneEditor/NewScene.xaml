@@ -1,0 +1,25 @@
+﻿<Window x:Class="GreatSceneEditor.NewScene"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GreatSceneEditor"
+        mc:Ignorable="d"
+        Title="NewScene" Height="155" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <TextBlock Text="Введите имя сцены" FontSize="20"></TextBlock>
+            <TextBox Name="TBSceneName" GotFocus="TBSceneName_GotFocus" FontSize="20" MinWidth="500"></TextBox>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <Button Name="NSBTNCancel" Click="NSBTNCancel_Click" Content="Cancel" Margin="10" Width="150"></Button>
+                <Button Name="NSBTNCreate" Click="NSBTNCreate_Click" Content="Create" Margin="10" Width="150"></Button>
+        </StackPanel>
+    </Grid>
+</Window>

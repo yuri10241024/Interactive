@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Newtonsoft.Json;
+using Interactive_moive;
+using System.IO;
 
 namespace Interactive_moive
 {
@@ -25,13 +27,17 @@ namespace Interactive_moive
         Scene CurrentScene;
         public bool IsMain;
 
+        Quest q = new Quest();
+
         public GameWindow()
         {
             InitializeComponent();
             MainPlayer.MediaEnded += EndVideo;
-            ShowScene(GetScene(1));
-        } 
 
+            q = JsonConvert.DeserializeObject<Quest>(File.ReadAllText(@"D:\_STUDIOS\VISUAL_STUDIO\TrashFiles\3.1.json"));
+            
+            ShowScene(GetScene(0));
+        }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             if (parent != null)
@@ -48,18 +54,34 @@ namespace Interactive_moive
             CurrentScene = scene;
 
             BSelected1.Visibility = Visibility.Collapsed;
-            BSelected2.Visibility = Visibility.Collapsed;
-            BSelected3.Visibility = Visibility.Collapsed;
-
-            TBSelect1.Text = scene.buttonText[0];
-            TBSelect2.Text = scene.buttonText[1];
-            TBSelect3.Text = scene.buttonText[2];
+            
+            if(scene.ListOfVariants.Count > 0)
+            {
+                TBSelect1.Text = scene.ListOfVariants[0].Description;
+            }
+            
+            if(scene.ListOfVariants.Count > 1)
+            {
+                TBSelect2.Text = scene.ListOfVariants[1].Description;
+            }
+            else
+            {
+                BSelected2.Visibility = Visibility.Collapsed;
+            }
+            if (scene.ListOfVariants.Count > 2)
+            {
+                TBSelect3.Text = scene.ListOfVariants[2].Description;
+            }
+            else
+            {
+                BSelected3.Visibility = Visibility.Collapsed;
+            }
 
             MainPlayer.Source = new Uri (scene.pathToVideo);
             MainPlayer.Play();
         }
 
-        Scene GetScene(int Num)
+        Scene GetSceneHardCode(int Num)
         {
             Scene S = null;
             if (Num == 1)
@@ -76,14 +98,18 @@ namespace Interactive_moive
 
                 S.pathToVideo = @"D:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\Начало игры.mp4";
 
-                S.buttonText = new string[3];
-                S.buttonText[0]= "Разбудить";
-                S.buttonText[1]= "Пощадить";
+                S.ListOfVariants = new List<Variant>();
 
-                S.Variants = new int[3];
+                Variant v = new Variant();
+                v.Description = "Разбудить";
+                v.TargetID = 2;
+                S.ListOfVariants.Add(v);
 
-                S.Variants[0] = 2;//Номер сцены к которому мы перейдем в случае нажатия
-                S.Variants[1] = 3;
+                v = new Variant();
+                v.Description = "Пощадить";
+
+                v.TargetID = 3;
+                S.ListOfVariants.Add(v);
 
                 S.countScene = 1;
             }
@@ -95,12 +121,12 @@ namespace Interactive_moive
 
                 S.pathToVideo = @"D:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\Разбудить.mp4";
 
-                S.buttonText = new string[3];
-                S.buttonText[0] = "Конец";
+                S.ListOfVariants = new List<Variant>();
 
-                S.Variants = new int[3];
-
-                S.Variants[0] = 4;//Номер сцены к которому мы перейдем в случае нажатия
+                Variant v = new Variant();
+                v.Description = "Конец";
+                v.TargetID = 4;
+                S.ListOfVariants.Add(v);
 
                 S.countScene = 2;
             }
@@ -112,12 +138,13 @@ namespace Interactive_moive
 
                 S.pathToVideo = @"D:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\Пощадить.mp4";
 
-                S.buttonText = new string[3];
-                S.buttonText[0] = "Конец";
+                S.ListOfVariants = new List<Variant>();
 
-                S.Variants = new int[3];
+                Variant v = new Variant();
+                v.Description = "Конец";
+                v.TargetID = 4;
+                S.ListOfVariants.Add(v);
 
-                S.Variants[0] = 4;//Номер сцены к которому мы перейдем в случае нажатия
 
                 S.countScene = 3;
             }
@@ -127,16 +154,24 @@ namespace Interactive_moive
 
                 S.pathToVideo = @"D:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\Конец.mp4";
 
-                S.buttonText = new string[3];
+                S.ListOfVariants = new List<Variant>();
 
-                S.Variants = new int[3];
-
-                S.Variants[0] = 4;//Номер сцены к которому мы перейдем в случае нажатия
-
+                Variant v = new Variant();
+                v.Description = "Конец";
+                v.TargetID = 4;
+                S.ListOfVariants.Add(v);
                 S.countScene = 4;
             }
 
             return S;
+        }
+
+
+        Scene GetScene(int Num)
+        {
+            Scene S = q.ListOfScenes.Where(s => s.countScene == Num).FirstOrDefault();//Что-то на страшном
+            return S;
+            
         }
 
         private void EndVideo(object sender, RoutedEventArgs e)
@@ -167,19 +202,19 @@ namespace Interactive_moive
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             MainPlayer.Stop();
-            ShowScene(GetScene(CurrentScene.Variants[0]));
+            ShowScene(GetScene(CurrentScene.ListOfVariants[0].TargetID));
         }
 
         private void Border_MouseDown2(object sender, MouseButtonEventArgs e)
         {
             MainPlayer.Stop();
-            ShowScene(GetScene(CurrentScene.Variants[1]));
+            ShowScene(GetScene(CurrentScene.ListOfVariants[1].TargetID));
         }
 
         private void Border_MouseDown3(object sender, MouseButtonEventArgs e)
         {
             MainPlayer.Stop();
-            ShowScene(GetScene(CurrentScene.Variants[2]));
+            ShowScene(GetScene(CurrentScene.ListOfVariants[2].TargetID));
         }
         
         private void Window_Closed(object sender, EventArgs e)

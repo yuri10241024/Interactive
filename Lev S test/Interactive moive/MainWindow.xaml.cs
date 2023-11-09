@@ -23,6 +23,7 @@ namespace Interactive_moive
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public string PathToProject = @"D:\_STUDIOS\VISUAL_STUDIO\Programming\InteractiveMovie\Lev S test";
         public MainWindow()
         {
@@ -43,18 +44,6 @@ namespace Interactive_moive
             test1.parent = this;
             test1.ShowDialog();
             MessageBox.Show("Спасибо за внимание");
-        }
-
-        void TestScene()
-        {
-            Scene test1 = new Scene();
-            test1.buttonText = new string[3];
-            test1.countScene = 1;
-            test1.pathToVideo = "fhwds";
-
-            string str = JsonConvert.SerializeObject(test1);
-
-            File.WriteAllText(@"C:\test1!!!", str);
         }
 
         void TestScene2()
