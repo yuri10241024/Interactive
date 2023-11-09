@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Newtonsoft.Json;
 using Interactive_moive;
+using System.IO;
 
 namespace Interactive_moive
 {
@@ -26,12 +27,17 @@ namespace Interactive_moive
         Scene CurrentScene;
         public bool IsMain;
 
+        Quest q = new Quest();
+
         public GameWindow()
         {
             InitializeComponent();
             MainPlayer.MediaEnded += EndVideo;
-            ShowScene(GetScene(1));
-        } 
+
+            q = JsonConvert.DeserializeObject<Quest>(File.ReadAllText(@"D:\_STUDIOS\VISUAL_STUDIO\TrashFiles\3.1.json"));
+            
+            ShowScene(GetScene(0));
+        }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             if (parent != null)
@@ -49,8 +55,6 @@ namespace Interactive_moive
 
             BSelected1.Visibility = Visibility.Collapsed;
             
-
-
             if(scene.ListOfVariants.Count > 0)
             {
                 TBSelect1.Text = scene.ListOfVariants[0].Description;
@@ -77,7 +81,7 @@ namespace Interactive_moive
             MainPlayer.Play();
         }
 
-        Scene GetScene(int Num)
+        Scene GetSceneHardCode(int Num)
         {
             Scene S = null;
             if (Num == 1)
@@ -160,6 +164,14 @@ namespace Interactive_moive
             }
 
             return S;
+        }
+
+
+        Scene GetScene(int Num)
+        {
+            Scene S = q.ListOfScenes.Where(s => s.countScene == Num).FirstOrDefault();//Что-то на страшном
+            return S;
+            
         }
 
         private void EndVideo(object sender, RoutedEventArgs e)

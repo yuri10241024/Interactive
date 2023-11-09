@@ -43,17 +43,33 @@ namespace GreatSceneEditor
 
         private void CBTurnOn_Click(object sender, RoutedEventArgs e)
         {
+            CBChecked();
+        }
+
+        void CBChecked()
+        {
             if (CBTurnOn.IsChecked == true)
             {
-                TBDescription.IsEnabled = true;
-                TBID.IsEnabled = true;
+                if (TBDescription != null)
+                {
+                    TBDescription.IsEnabled = true;
+                    TBID.IsEnabled = true;
+                }
 
             }
             else
             {
-                TBDescription.IsEnabled = false;
-                TBID.IsEnabled = false;
+                if (TBDescription != null)
+                {
+                    TBDescription.IsEnabled = false;
+                    TBID.IsEnabled = false;//TODO: доделать чекбоксы
+                }
             }
+        }
+
+        private void CBTurnOn_Checked(object sender, RoutedEventArgs e)
+        {
+            CBChecked();
         }
     }
 }

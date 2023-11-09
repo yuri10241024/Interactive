@@ -26,9 +26,6 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <Button x:Name="TestButton" Content="Привет" Grid.Column="0" >
-        </Button>
-
         <Border Grid.Column="1">
             <Button x:Name="BTNloadGame" Content="Загрузить игру" Width="220" Height="70" 
                     HorizontalContentAlignment="Center" Foreground="DarkGray">

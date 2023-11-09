@@ -41,6 +41,8 @@ namespace GreatSceneEditor
             VC1.TBVariantNum.Text = "Вариант 1";
             VC2.TBVariantNum.Text = "Вариант 2";
             VC3.TBVariantNum.Text = "Вариант 3";
+
+            VC2.CBTurnOn.Click += CBTurnOn2_Click;
         }
         
         private void TitleOfSelectedItem_GotFocus(object sender, RoutedEventArgs e)
@@ -70,6 +72,24 @@ namespace GreatSceneEditor
 
         }
 
+        private void BTNOpen_Click(object sender, RoutedEventArgs e)
+        {
+            SaveLastScene();
+            OpenFileDialog O = new OpenFileDialog();
+            O.ShowDialog();
+            string JSON = File.ReadAllText(O.FileName);
+            Quest SelectedQuest = JsonConvert.DeserializeObject<Quest>(JSON);
+            OCScenes.Clear();
+            OCScenes = new ObservableCollection<Scene>(SelectedQuest.ListOfScenes);
+            SceneList.ItemsSource = OCScenes;
+            q = SelectedQuest;    
+
+
+            VC1.TBVariantNum.Text = "Вариант 1";
+            VC2.TBVariantNum.Text = "Вариант 2";
+            VC3.TBVariantNum.Text = "Вариант 3";
+        }
+
         private bool ValidateID()
         {
             int id;
@@ -82,11 +102,12 @@ namespace GreatSceneEditor
             {
                 return false;
             }
-            if (!int.TryParse(VC2.TBID.Text, out id))//TODO: Проверять CheckBoxes isCheked
+            
+            if (!int.TryParse(VC2.TBID.Text, out id) && VC2.CBTurnOn.IsChecked == true)//TODO: Проверять CheckBoxes isCheked
             {
                 return false;
             }
-            if (!int.TryParse(VC3.TBID.Text, out id))
+            if (!int.TryParse(VC3.TBID.Text, out id) && VC2.CBTurnOn.IsChecked == true)
             {
                 return false;
             }
@@ -119,10 +140,6 @@ namespace GreatSceneEditor
                         Description = VC2.TBDescription.Text
                     });
                 }
-                else
-                {
-                    VC3.CBTurnOn.IsEnabled = false;
-                }
 
                 if (VC3.CBTurnOn.IsChecked == true)
                 {
@@ -132,7 +149,6 @@ namespace GreatSceneEditor
                         Description = VC3.TBDescription.Text
                     });
                 }
-                
 
             }
         }
@@ -261,6 +277,20 @@ namespace GreatSceneEditor
             O.ShowDialog();
             IntermediateVideo.Text = O.FileName;
         }
+
+        private void CBTurnOn2_Click(object sender, RoutedEventArgs e)
+        {
+            if(VC2.CBTurnOn.IsChecked == true)
+            {
+                VC3.CBTurnOn.IsEnabled = true;
+            }
+            else
+            {
+                VC3.CBTurnOn.IsChecked = false;
+                VC3.CBTurnOn.IsEnabled = false;
+            }
+        }
+
 
         //TODO: Сделать расширение с большим кол-вом вариантов.
     }//D:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое

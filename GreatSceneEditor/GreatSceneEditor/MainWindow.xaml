@@ -18,7 +18,7 @@
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="0">
             <Button Name="BTNNew"  Content="New" Click="BTNNew_Click"></Button>
-            <Button Name="BTNOpen" Content="Open"></Button>
+            <Button Name="BTNOpen" Content="Open" Click="BTNOpen_Click"></Button>
             <Button Content="SAVE" Name ="BTNSave"  BorderBrush="PaleVioletRed" Click="BTNSave_Click" Height="20" VerticalAlignment="Bottom"></Button>
             <Button Name="BTNAddScene" Content="Add Scene" BorderBrush="LightGreen" Click="BTNAddScene_Click" Height="20" VerticalAlignment="Bottom"></Button>
             <Button Content="Delete"></Button>
