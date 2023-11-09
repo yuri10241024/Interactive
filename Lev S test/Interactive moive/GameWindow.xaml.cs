@@ -248,3 +248,4 @@ namespace Interactive_moive
         }
     }
 }
+//TODO: Починить 2-ую кнопку.
