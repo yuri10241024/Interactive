@@ -17,6 +17,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace GreatSceneEditor
 {
@@ -41,6 +42,8 @@ namespace GreatSceneEditor
             VC1.TBVariantNum.Text = "Вариант 1";
             VC2.TBVariantNum.Text = "Вариант 2";
             VC3.TBVariantNum.Text = "Вариант 3";
+
+            SPTools.Visibility = Visibility.Hidden;
 
             VC2.CBTurnOn.Click += CBTurnOn2_Click;
         }
@@ -77,6 +80,10 @@ namespace GreatSceneEditor
             SaveLastScene();
             OpenFileDialog O = new OpenFileDialog();
             O.ShowDialog();
+            if(string.IsNullOrEmpty(O.FileName))
+            {
+                return;
+            }
             string JSON = File.ReadAllText(O.FileName);
             Quest SelectedQuest = JsonConvert.DeserializeObject<Quest>(JSON);
             OCScenes.Clear();
@@ -88,6 +95,11 @@ namespace GreatSceneEditor
             VC1.TBVariantNum.Text = "Вариант 1";
             VC2.TBVariantNum.Text = "Вариант 2";
             VC3.TBVariantNum.Text = "Вариант 3";
+
+            SceneList.Visibility = Visibility.Visible;
+            SPTools.Visibility = Visibility.Visible;
+
+            ProjectLoaded = true;
         }
 
         private bool ValidateID()
@@ -103,7 +115,7 @@ namespace GreatSceneEditor
                 return false;
             }
             
-            if (!int.TryParse(VC2.TBID.Text, out id) && VC2.CBTurnOn.IsChecked == true)//TODO: Проверять CheckBoxes isCheked
+            if (!int.TryParse(VC2.TBID.Text, out id) && VC2.CBTurnOn.IsChecked == true)
             {
                 return false;
             }
@@ -163,8 +175,10 @@ namespace GreatSceneEditor
                 Sc.Title = ns.TBSceneName.Text;
                 q.ListOfScenes.Add(Sc);
 
-                OCScenes.Add(Sc);//TODO: При смене сцены нужно сохранять изменённые данные
+                OCScenes.Add(Sc);
                 SceneList.SelectedIndex = OCScenes.Count - 1;
+
+                UnblockScene();
             }
             if (ns.IsCreated)
             {
@@ -175,34 +189,31 @@ namespace GreatSceneEditor
         {
             NewProjectWindow npw = new NewProjectWindow();
             npw.ShowDialog();
-            
             if(npw.NPWState)
             {
                 this.Title = npw.TBProjectName.Text;
-                SceneList.Visibility = Visibility.Visible;
-                SPTools.Visibility = Visibility.Visible;
+                UnblockScene();
                 if (ProjectLoaded == true)
                 {
                     //TODO:проверить что предидущий проект сохранён
                 }
                 q = new Quest();
                 TitleOfSelectedItem.Text = "";
-                ID.Text = "";
+                ID.Text = "0";
                 MainVideo.Text = "";//TODO: Обнулить текст(((
                 IntermediateVideo.Text = "";
-                VC1.TBID.Text = "";
+                VC1.TBID.Text = "0";
                 VC1.TBDescription.Text = "";
-                VC2.TBID.Text = "";
+                VC2.TBID.Text = "0";
                 VC2.TBDescription.Text = "";
-                VC3.TBID.Text = "";
+                VC3.TBID.Text = "0";
                 VC3.TBDescription.Text = "";
             }
             else
             {
                 if (ProjectLoaded == false)
                 {
-                    SceneList.Visibility = Visibility.Hidden;
-                    SPTools.Visibility = Visibility.Hidden;
+                    BlockScene();
                 }
             }
         }
@@ -267,6 +278,7 @@ namespace GreatSceneEditor
         private void BTNMainVideo_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog O = new OpenFileDialog();
+            O.Filter = ("mpeg Files|*.mp4|avi Files|*.avi");
             O.ShowDialog();
             MainVideo.Text = O.FileName;
         }
@@ -291,7 +303,37 @@ namespace GreatSceneEditor
             }
         }
 
+        private void VC1_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        Regex regex = new Regex(@"^\d+$");//
+
+        private void ID_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (regex.IsMatch(ID.Text))
+            {
+                ID.Foreground = Brushes.Black;
+            }
+            else
+            {
+                ID.Foreground = Brushes.Red;
+            }
+        }
+
+        private void BlockScene()
+        {
+            SceneList.Visibility = Visibility.Hidden;
+            SPTools.Visibility = Visibility.Hidden;
+        }
+
+        private void UnblockScene()
+        {
+            SceneList.Visibility = Visibility.Visible;
+            SPTools.Visibility = Visibility.Visible;
+        }
 
         //TODO: Сделать расширение с большим кол-вом вариантов.
-    }//D:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое
+    }
 }

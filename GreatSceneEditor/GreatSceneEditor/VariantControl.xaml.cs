@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -37,8 +38,6 @@ namespace GreatSceneEditor
 
             V = new VariantType("Quit", "Завершить");
             VariantTypes.Add(V);
-
-            CBVariants.ItemsSource = VariantTypes;
         }
 
         private void CBTurnOn_Click(object sender, RoutedEventArgs e)
@@ -55,7 +54,6 @@ namespace GreatSceneEditor
                     TBDescription.IsEnabled = true;
                     TBID.IsEnabled = true;
                 }
-
             }
             else
             {
@@ -70,6 +68,25 @@ namespace GreatSceneEditor
         private void CBTurnOn_Checked(object sender, RoutedEventArgs e)
         {
             CBChecked();
+        }
+
+        private void CBTurnOn_Unchecked(object sender, RoutedEventArgs e)
+        {
+            CBChecked();
+        }
+
+        Regex regex = new Regex(@"^\d+$");//
+
+        private void TBID_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (regex.IsMatch(TBID.Text))
+            {
+                TBID.Foreground = Brushes.Black;
+            }
+            else
+            {
+                TBID.Foreground = Brushes.Red;
+            }
         }
     }
 }

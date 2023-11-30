@@ -33,8 +33,8 @@
                 <TextBox x:Name="TitleOfSelectedItem" Text="Selected Item" GotFocus="TitleOfSelectedItem_GotFocus"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                <TextBlock Text="ID сцены: " Width="150" Margin="0,0,10,0"></TextBlock>
-                <TextBox x:Name="ID" Text="Enter"></TextBox>
+                <TextBlock Text="ID сцены: " Width="150" Margin="0,0,10,0" ></TextBlock>
+                <TextBox x:Name="ID" Text="0" KeyDown="ID_KeyDown" ></TextBox>
             </StackPanel>
             
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
@@ -48,7 +48,7 @@
                 <Button Name="BTNInterVideo" Click="BTNInterVideo_Click" Content="Выбрать" Margin="0,0,10,0"></Button>
                 <TextBlock x:Name="IntermediateVideo" Text="File name"/>
             </StackPanel>
-            <local:VariantControl x:Name="VC1"/>
+            <local:VariantControl x:Name="VC1" Loaded="VC1_Loaded"/>
 
             <local:VariantControl x:Name="VC2">
 
