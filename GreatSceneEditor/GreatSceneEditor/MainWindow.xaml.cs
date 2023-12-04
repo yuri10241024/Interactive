@@ -31,6 +31,8 @@ namespace GreatSceneEditor
         
         public ObservableCollection<Scene> OCScenes = new ObservableCollection<Scene>();
 
+        public bool IsChanged;
+
         Scene SelectedScene;
         public MainWindow()
         {
@@ -43,11 +45,18 @@ namespace GreatSceneEditor
             VC2.TBVariantNum.Text = "Вариант 2";
             VC3.TBVariantNum.Text = "Вариант 3";
 
+            VC1.TBVariantNum.KeyDown += TextChanged;
+            VC2.TBVariantNum.KeyDown += TextChanged;
+            VC3.TBVariantNum.KeyDown += TextChanged;
+
+
             SPTools.Visibility = Visibility.Hidden;
 
             VC2.CBTurnOn.Click += CBTurnOn2_Click;
         }
+
         
+
         private void TitleOfSelectedItem_GotFocus(object sender, RoutedEventArgs e)
         {
             if (TitleOfSelectedItem.Text == "Selected Item")
@@ -63,6 +72,7 @@ namespace GreatSceneEditor
             if (CurrentFileName == "")
             {
                 SaveFileDialog SFD = new SaveFileDialog();
+                SFD.Filter = ("json|*.json");
                 SFD.ShowDialog();
                 if (SFD.FileName == "")
                 {
@@ -79,6 +89,7 @@ namespace GreatSceneEditor
         {
             SaveLastScene();
             OpenFileDialog O = new OpenFileDialog();
+            O.Filter = ("json|*.json");
             O.ShowDialog();
             if(string.IsNullOrEmpty(O.FileName))
             {
@@ -90,7 +101,6 @@ namespace GreatSceneEditor
             OCScenes = new ObservableCollection<Scene>(SelectedQuest.ListOfScenes);
             SceneList.ItemsSource = OCScenes;
             q = SelectedQuest;    
-
 
             VC1.TBVariantNum.Text = "Вариант 1";
             VC2.TBVariantNum.Text = "Вариант 2";
@@ -267,7 +277,7 @@ namespace GreatSceneEditor
             }
         }
 
-        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        public void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == Key.F12)
             {
@@ -286,6 +296,7 @@ namespace GreatSceneEditor
         private void BTNInterVideo_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog O = new OpenFileDialog();
+            O.Filter = ("mpeg Files|*.mp4|avi Files|*.avi");
             O.ShowDialog();
             IntermediateVideo.Text = O.FileName;
         }
@@ -320,6 +331,8 @@ namespace GreatSceneEditor
             {
                 ID.Foreground = Brushes.Red;
             }
+
+            IsChanged = true;
         }
 
         private void BlockScene()
@@ -333,7 +346,28 @@ namespace GreatSceneEditor
             SceneList.Visibility = Visibility.Visible;
             SPTools.Visibility = Visibility.Visible;
         }
+        public void ChangedP()
+        {
+            IsChanged = true;
+        }
+        public void TextChanged(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            ChangedP();
+        }
 
+        private void SaveProjectWindow()
+        {
+            SaveWindow SW = new SaveWindow();
+            SW.ShowDialog();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)//параметр при закрытии окна
+        {
+            if (IsChanged)
+            {
+                SaveProjectWindow();
+            }
+        }
         //TODO: Сделать расширение с большим кол-вом вариантов.
     }
 }

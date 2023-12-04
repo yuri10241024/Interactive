@@ -25,6 +25,7 @@ namespace GreatSceneEditor
     {
         List<VariantType> VariantTypes = new List<VariantType>();
 
+        public Action ChangedProject;
         public VariantControl()
         {
             InitializeComponent();
@@ -87,6 +88,9 @@ namespace GreatSceneEditor
             {
                 TBID.Foreground = Brushes.Red;
             }
+
+            ChangedProject();
+
         }
     }
 }
