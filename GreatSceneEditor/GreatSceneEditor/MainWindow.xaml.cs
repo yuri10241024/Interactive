@@ -17,6 +17,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace GreatSceneEditor
 {
@@ -30,6 +31,8 @@ namespace GreatSceneEditor
         
         public ObservableCollection<Scene> OCScenes = new ObservableCollection<Scene>();
 
+        public bool IsChanged;
+
         Scene SelectedScene;
         public MainWindow()
         {
@@ -42,9 +45,15 @@ namespace GreatSceneEditor
             VC2.TBVariantNum.Text = "Вариант 2";
             VC3.TBVariantNum.Text = "Вариант 3";
 
+            VC1.TBVariantNum.KeyDown += TextChanged;
+            VC2.TBVariantNum.KeyDown += TextChanged;
+            VC3.TBVariantNum.KeyDown += TextChanged;
+
+
+            SPTools.Visibility = Visibility.Hidden;
+
             VC2.CBTurnOn.Click += CBTurnOn2_Click;
         }
-        
         private void TitleOfSelectedItem_GotFocus(object sender, RoutedEventArgs e)
         {
             if (TitleOfSelectedItem.Text == "Selected Item")
@@ -52,7 +61,6 @@ namespace GreatSceneEditor
                 TitleOfSelectedItem.Text = "";
             }
         }
-
         private void BTNSave_Click(object sender, RoutedEventArgs e)
         {
             SaveLastScene();
@@ -60,6 +68,7 @@ namespace GreatSceneEditor
             if (CurrentFileName == "")
             {
                 SaveFileDialog SFD = new SaveFileDialog();
+                SFD.Filter = ("json|*.json");
                 SFD.ShowDialog();
                 if (SFD.FileName == "")
                 {
@@ -71,12 +80,16 @@ namespace GreatSceneEditor
             File.WriteAllText(CurrentFileName, JSON);
 
         }
-
         private void BTNOpen_Click(object sender, RoutedEventArgs e)
         {
             SaveLastScene();
             OpenFileDialog O = new OpenFileDialog();
+            O.Filter = ("json|*.json");
             O.ShowDialog();
+            if(string.IsNullOrEmpty(O.FileName))
+            {
+                return;
+            }
             string JSON = File.ReadAllText(O.FileName);
             Quest SelectedQuest = JsonConvert.DeserializeObject<Quest>(JSON);
             OCScenes.Clear();
@@ -84,12 +97,15 @@ namespace GreatSceneEditor
             SceneList.ItemsSource = OCScenes;
             q = SelectedQuest;    
 
-
             VC1.TBVariantNum.Text = "Вариант 1";
             VC2.TBVariantNum.Text = "Вариант 2";
             VC3.TBVariantNum.Text = "Вариант 3";
-        }
 
+            SceneList.Visibility = Visibility.Visible;
+            SPTools.Visibility = Visibility.Visible;
+
+            ProjectLoaded = true;
+        }
         private bool ValidateID()
         {
             int id;
@@ -103,7 +119,7 @@ namespace GreatSceneEditor
                 return false;
             }
             
-            if (!int.TryParse(VC2.TBID.Text, out id) && VC2.CBTurnOn.IsChecked == true)//TODO: Проверять CheckBoxes isCheked
+            if (!int.TryParse(VC2.TBID.Text, out id) && VC2.CBTurnOn.IsChecked == true)
             {
                 return false;
             }
@@ -113,7 +129,6 @@ namespace GreatSceneEditor
             }
             return true;
         }
-
         private void SaveLastScene()
         {
             if (SelectedScene != null)
@@ -149,10 +164,8 @@ namespace GreatSceneEditor
                         Description = VC3.TBDescription.Text
                     });
                 }
-
             }
         }
-
         private void BTNAddScene_Click(object sender, RoutedEventArgs e)
         {
             NewScene ns = new NewScene();
@@ -163,8 +176,10 @@ namespace GreatSceneEditor
                 Sc.Title = ns.TBSceneName.Text;
                 q.ListOfScenes.Add(Sc);
 
-                OCScenes.Add(Sc);//TODO: При смене сцены нужно сохранять изменённые данные
+                OCScenes.Add(Sc);
                 SceneList.SelectedIndex = OCScenes.Count - 1;
+
+                UnblockScene();
             }
             if (ns.IsCreated)
             {
@@ -175,38 +190,34 @@ namespace GreatSceneEditor
         {
             NewProjectWindow npw = new NewProjectWindow();
             npw.ShowDialog();
-            
             if(npw.NPWState)
             {
                 this.Title = npw.TBProjectName.Text;
-                SceneList.Visibility = Visibility.Visible;
-                SPTools.Visibility = Visibility.Visible;
+                UnblockScene();
                 if (ProjectLoaded == true)
                 {
                     //TODO:проверить что предидущий проект сохранён
                 }
                 q = new Quest();
                 TitleOfSelectedItem.Text = "";
-                ID.Text = "";
+                ID.Text = "0";
                 MainVideo.Text = "";//TODO: Обнулить текст(((
                 IntermediateVideo.Text = "";
-                VC1.TBID.Text = "";
+                VC1.TBID.Text = "0";
                 VC1.TBDescription.Text = "";
-                VC2.TBID.Text = "";
+                VC2.TBID.Text = "0";
                 VC2.TBDescription.Text = "";
-                VC3.TBID.Text = "";
+                VC3.TBID.Text = "0";
                 VC3.TBDescription.Text = "";
             }
             else
             {
                 if (ProjectLoaded == false)
                 {
-                    SceneList.Visibility = Visibility.Hidden;
-                    SPTools.Visibility = Visibility.Hidden;
+                    BlockScene();
                 }
             }
         }
-        
         private void SceneList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {//TODO:Исключить потерю данных при переключении сцен. Т.е. проверить куда идёт какая ссылка.
 //Выпадающий список ItemSource, есть разные способы сохранять и работать с данными. 
@@ -255,29 +266,27 @@ namespace GreatSceneEditor
                 VC3.CBTurnOn.IsChecked = false;
             }
         }
-
-        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        public void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == Key.F12)
             {
                 BTNSave_Click(null, null);
             }
         }
-
         private void BTNMainVideo_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog O = new OpenFileDialog();
+            O.Filter = ("mpeg Files|*.mp4|avi Files|*.avi");
             O.ShowDialog();
             MainVideo.Text = O.FileName;
         }
-
         private void BTNInterVideo_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog O = new OpenFileDialog();
+            O.Filter = ("mpeg Files|*.mp4|avi Files|*.avi");
             O.ShowDialog();
             IntermediateVideo.Text = O.FileName;
         }
-
         private void CBTurnOn2_Click(object sender, RoutedEventArgs e)
         {
             if(VC2.CBTurnOn.IsChecked == true)
@@ -290,8 +299,56 @@ namespace GreatSceneEditor
                 VC3.CBTurnOn.IsEnabled = false;
             }
         }
+        private void VC1_Loaded(object sender, RoutedEventArgs e)
+        {
 
+        }
 
+        Regex regex = new Regex(@"^\d+$");//
+
+        private void ID_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (regex.IsMatch(ID.Text))
+            {
+                ID.Foreground = Brushes.Black;
+            }
+            else
+            {
+                ID.Foreground = Brushes.Red;
+            }
+
+            IsChanged = true;
+        }
+        private void BlockScene()
+        {
+            SceneList.Visibility = Visibility.Hidden;
+            SPTools.Visibility = Visibility.Hidden;
+        }
+        private void UnblockScene()
+        {
+            SceneList.Visibility = Visibility.Visible;
+            SPTools.Visibility = Visibility.Visible;
+        }
+        public void ChangedP()
+        {
+            IsChanged = true;
+        }
+        public void TextChanged(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            ChangedP();
+        }
+        private void SaveProjectWindow()
+        {
+            SaveWindow SW = new SaveWindow();
+            SW.ShowDialog();
+        }
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)//параметр при закрытии окна
+        {
+            if (IsChanged)
+            {
+                SaveProjectWindow();
+            }
+        }
         //TODO: Сделать расширение с большим кол-вом вариантов.
-    }//D:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое
+    }
 }

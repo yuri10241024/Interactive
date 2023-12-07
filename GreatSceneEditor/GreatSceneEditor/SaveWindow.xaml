@@ -1,0 +1,28 @@
+﻿<Window x:Class="GreatSceneEditor.SaveWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GreatSceneEditor"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+    Title="SaveWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Vertical" Grid.Row="0">
+            <TextBlock Text="Проект не сохранён." HorizontalAlignment="Center" FontSize="20"></TextBlock>
+            <TextBlock Text="Вы желаете сохранить проект?" HorizontalAlignment="Center" FontSize="14"></TextBlock>
+            
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1">
+            <Button Margin="10" Name="BTNDontSave" Content="Не сохранять" Width="150" Click="BTNDontSave_Click"></Button>
+            <Button Margin="10" Name="BTNDecline" Content="Отменить" Width="150" Click="BTNDecline_Click"></Button>
+            <Button Margin="10" Name="BTNSave" Content="Сохранить" Width="150" Click="BTNSave_Click"></Button>
+        </StackPanel>
+    </Grid>
+</Window>
