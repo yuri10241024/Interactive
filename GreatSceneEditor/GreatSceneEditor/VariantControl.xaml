@@ -8,10 +8,10 @@
              d:DesignHeight="450" d:DesignWidth="800">
     
     <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-        <CheckBox Name="CBTurnOn" Click="CBTurnOn_Click" IsChecked="True" Checked="CBTurnOn_Checked" Unchecked="CBTurnOn_Unchecked"></CheckBox>
+        <CheckBox Name="CBTurnOn" Click="CBTurnOn_Click" IsChecked="True" Checked="CBTurnOn_Checked" Unchecked="CBTurnOn_Unchecked" ></CheckBox>
         <TextBlock x:Name ="TBVariantNum"  Width="150" Margin="0,0,10,0" Text="Вариант n: "></TextBlock>
         <TextBox Name="TBID"  Text="0" KeyDown="TBID_KeyDown"></TextBox>
-        <TextBox Name="TBDescription" Text="Ведите описание"></TextBox>
+        <TextBox Name="TBDescription" Text="Ведите описание" ></TextBox>
         
     </StackPanel>
     

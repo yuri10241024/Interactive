@@ -54,9 +54,6 @@ namespace GreatSceneEditor
 
             VC2.CBTurnOn.Click += CBTurnOn2_Click;
         }
-
-        
-
         private void TitleOfSelectedItem_GotFocus(object sender, RoutedEventArgs e)
         {
             if (TitleOfSelectedItem.Text == "Selected Item")
@@ -64,7 +61,6 @@ namespace GreatSceneEditor
                 TitleOfSelectedItem.Text = "";
             }
         }
-
         private void BTNSave_Click(object sender, RoutedEventArgs e)
         {
             SaveLastScene();
@@ -84,7 +80,6 @@ namespace GreatSceneEditor
             File.WriteAllText(CurrentFileName, JSON);
 
         }
-
         private void BTNOpen_Click(object sender, RoutedEventArgs e)
         {
             SaveLastScene();
@@ -111,7 +106,6 @@ namespace GreatSceneEditor
 
             ProjectLoaded = true;
         }
-
         private bool ValidateID()
         {
             int id;
@@ -135,7 +129,6 @@ namespace GreatSceneEditor
             }
             return true;
         }
-
         private void SaveLastScene()
         {
             if (SelectedScene != null)
@@ -171,10 +164,8 @@ namespace GreatSceneEditor
                         Description = VC3.TBDescription.Text
                     });
                 }
-
             }
         }
-
         private void BTNAddScene_Click(object sender, RoutedEventArgs e)
         {
             NewScene ns = new NewScene();
@@ -227,7 +218,6 @@ namespace GreatSceneEditor
                 }
             }
         }
-        
         private void SceneList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {//TODO:Исключить потерю данных при переключении сцен. Т.е. проверить куда идёт какая ссылка.
 //Выпадающий список ItemSource, есть разные способы сохранять и работать с данными. 
@@ -276,7 +266,6 @@ namespace GreatSceneEditor
                 VC3.CBTurnOn.IsChecked = false;
             }
         }
-
         public void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == Key.F12)
@@ -284,7 +273,6 @@ namespace GreatSceneEditor
                 BTNSave_Click(null, null);
             }
         }
-
         private void BTNMainVideo_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog O = new OpenFileDialog();
@@ -292,7 +280,6 @@ namespace GreatSceneEditor
             O.ShowDialog();
             MainVideo.Text = O.FileName;
         }
-
         private void BTNInterVideo_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog O = new OpenFileDialog();
@@ -300,7 +287,6 @@ namespace GreatSceneEditor
             O.ShowDialog();
             IntermediateVideo.Text = O.FileName;
         }
-
         private void CBTurnOn2_Click(object sender, RoutedEventArgs e)
         {
             if(VC2.CBTurnOn.IsChecked == true)
@@ -313,7 +299,6 @@ namespace GreatSceneEditor
                 VC3.CBTurnOn.IsEnabled = false;
             }
         }
-
         private void VC1_Loaded(object sender, RoutedEventArgs e)
         {
 
@@ -334,13 +319,11 @@ namespace GreatSceneEditor
 
             IsChanged = true;
         }
-
         private void BlockScene()
         {
             SceneList.Visibility = Visibility.Hidden;
             SPTools.Visibility = Visibility.Hidden;
         }
-
         private void UnblockScene()
         {
             SceneList.Visibility = Visibility.Visible;
@@ -354,13 +337,11 @@ namespace GreatSceneEditor
         {
             ChangedP();
         }
-
         private void SaveProjectWindow()
         {
             SaveWindow SW = new SaveWindow();
             SW.ShowDialog();
         }
-
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)//параметр при закрытии окна
         {
             if (IsChanged)
