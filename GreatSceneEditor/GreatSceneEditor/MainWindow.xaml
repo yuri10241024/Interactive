@@ -33,7 +33,6 @@
                 <TextBox x:Name="TitleOfSelectedItem" Text="Selected Item" GotFocus="TitleOfSelectedItem_GotFocus"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                <TextBox x:Name="ID" Text="0" KeyDown="ID_KeyDown" ></TextBox>
                 <TextBlock Text="ID сцены: " Width="150" Margin="0,0,10,0"></TextBlock>
                 <TextBox x:Name="ID" Text="Enter"></TextBox>
             </StackPanel>
