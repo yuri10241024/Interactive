@@ -188,7 +188,7 @@ namespace GreatSceneEditor
         }
         private void BTNNew_Click(object sender, RoutedEventArgs e)
         {
-            NewProjectWindow npw = new NewProjectWindow();
+                NewProjectWindow npw = new NewProjectWindow();
             npw.ShowDialog();
             if(npw.NPWState)
             {
@@ -201,7 +201,7 @@ namespace GreatSceneEditor
                 q = new Quest();
                 TitleOfSelectedItem.Text = "";
                 ID.Text = "0";
-                MainVideo.Text = "";//TODO: Обнулить текст(((
+                MainVideo.Text = "";
                 IntermediateVideo.Text = "";
                 VC1.TBID.Text = "0";
                 VC1.TBDescription.Text = "";
@@ -229,7 +229,7 @@ namespace GreatSceneEditor
             if(!ValidateID())
             {
                 SceneList.SelectedItem = SelectedScene;
-                return;
+                return;//тут вернуться нада
             }
 
             Scene NewScene = (SceneList.SelectedItem as Scene);//Преобразование в объект новой сцены, т.е. при переключении
@@ -238,7 +238,7 @@ namespace GreatSceneEditor
             TitleOfSelectedItem.Text = NewScene.Title;
             ID.Text = NewScene.countScene.ToString();
             MainVideo.Text = NewScene.pathToVideo;
-            IntermediateVideo.Text = NewScene.IntermediateVideo;
+            IntermediateVideo.Text = NewScene.IntermediateVideo;//TODO: cвязка данных title
             if (NewScene.ListOfVariants.Count > 0)
             {
                 VC1.TBID.Text = NewScene.ListOfVariants[0].TargetID.ToString();
@@ -254,6 +254,8 @@ namespace GreatSceneEditor
             else
             {
                 VC2.CBTurnOn.IsChecked = false;
+                VC2.TBID.Text = "";
+                VC2.TBDescription.Text = "";
             }
             if (NewScene.ListOfVariants.Count > 2)
             {
@@ -264,6 +266,8 @@ namespace GreatSceneEditor
             else
             {
                 VC3.CBTurnOn.IsChecked = false;
+                VC3.TBID.Text = "";
+                VC3.TBDescription.Text = "";
             }
         }
         public void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
@@ -348,6 +352,11 @@ namespace GreatSceneEditor
             {
                 SaveProjectWindow();
             }
+        }
+
+        private void CBIsFinal_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
         //TODO: Сделать расширение с большим кол-вом вариантов.
     }

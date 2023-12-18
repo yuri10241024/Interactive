@@ -61,7 +61,7 @@ namespace GreatSceneEditor
                 if (TBDescription != null)
                 {
                     TBDescription.IsEnabled = false;
-                    TBID.IsEnabled = false;//TODO: доделать чекбоксы
+                    TBID.IsEnabled = false;
                 }
             }
         }
@@ -89,7 +89,7 @@ namespace GreatSceneEditor
                 TBID.Foreground = Brushes.Red;
             }
 
-            ChangedProject();
+            //ChangedProject();
 
         }
     }
