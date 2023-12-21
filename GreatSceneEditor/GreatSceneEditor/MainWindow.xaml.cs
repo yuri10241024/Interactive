@@ -106,27 +106,42 @@ namespace GreatSceneEditor
 
             ProjectLoaded = true;
         }
-        private bool ValidateID()
+        private bool ValidateID(out string message)
         {
             int id;
 
+            message = "";
+
             if(!int.TryParse(ID.Text, out id))
             {
+                message = "ID сцены может быть только целым числом";
                 return false;
             }
+
+            Scene S = OCScenes.Where(sc => sc.countScene == id).FirstOrDefault();//Вернуться с учителем
+            if(S != null)
+            {
+                message = "Такой ID сцены уже используется";
+                return false;
+            }
+
             if(!int.TryParse(VC1.TBID.Text, out id))
             {
+                message = "ID варианта 1 может быть только целым числом";
                 return false;
             }
             
             if (!int.TryParse(VC2.TBID.Text, out id) && VC2.CBTurnOn.IsChecked == true)
             {
+                message = "ID варианта 2 может быть только целым числом";
                 return false;
             }
-            if (!int.TryParse(VC3.TBID.Text, out id) && VC2.CBTurnOn.IsChecked == true)
+            if (!int.TryParse(VC3.TBID.Text, out id) && VC3.CBTurnOn.IsChecked == true)
             {
+                message = "ID варианта 2 может быть только целым числом";
                 return false;
             }
+
             return true;
         }
         private void SaveLastScene()
@@ -188,7 +203,7 @@ namespace GreatSceneEditor
         }
         private void BTNNew_Click(object sender, RoutedEventArgs e)
         {
-                NewProjectWindow npw = new NewProjectWindow();
+            NewProjectWindow npw = new NewProjectWindow();
             npw.ShowDialog();
             if(npw.NPWState)
             {
@@ -226,19 +241,23 @@ namespace GreatSceneEditor
                 return;
             }
 
-            if(!ValidateID())
+            string message;
+
+            if(!ValidateID(out message))
             {
+                TBMessage.Text = message;
                 SceneList.SelectedItem = SelectedScene;
-                return;//тут вернуться нада
+                return;
             }
 
             Scene NewScene = (SceneList.SelectedItem as Scene);//Преобразование в объект новой сцены, т.е. при переключении
             SaveLastScene();
             SelectedScene = NewScene;//Совокупность данных
             TitleOfSelectedItem.Text = NewScene.Title;
-            ID.Text = NewScene.countScene.ToString();
+            ID.Text = NewScene.countScene.ToString();   
             MainVideo.Text = NewScene.pathToVideo;
-            IntermediateVideo.Text = NewScene.IntermediateVideo;//TODO: cвязка данных title
+            IntermediateVideo.Text = NewScene.IntermediateVideo;//TODO: cвязка данных title это всё с bindin'гом
+            
             if (NewScene.ListOfVariants.Count > 0)
             {
                 VC1.TBID.Text = NewScene.ListOfVariants[0].TargetID.ToString();
@@ -358,6 +377,16 @@ namespace GreatSceneEditor
         {
             
         }
+
+       /* private void TitleOfSelectedItem_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(SelectedScene == null)
+            {
+                return;
+            }
+            SelectedScene.Title = TitleOfSelectedItem.Text;
+
+        }*/
         //TODO: Сделать расширение с большим кол-вом вариантов.
     }
 }
