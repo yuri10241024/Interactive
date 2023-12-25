@@ -22,7 +22,7 @@
             <Button Name="BTNNew"  Content="New" Click="BTNNew_Click"></Button>
             <Button Name="BTNOpen" Content="Open" Click="BTNOpen_Click"></Button>
             <Button Content="Save" Name ="BTNSave" Click="BTNSave_Click" Height="20" VerticalAlignment="Bottom"></Button>
-            <Button Name="BTNAddScene" Content="Add Scene" Click="BTNAddScene_Click" Height="20" VerticalAlignment="Bottom"></Button>
+            <Button Name="BTNAddScene" Content="Add Scene" Click="BTNAddScene_Click" Height="20" VerticalAlignment="Top"></Button>
             <Button Content="Delete" ></Button>
         </StackPanel>
 
@@ -34,7 +34,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                 <TextBlock Text="ID сцены: " Width="150" Margin="0,0,10,0"></TextBlock>
-                <TextBox x:Name="ID" Text="Enter"></TextBox>
+                <TextBlock x:Name="ID" Text="0" IsEnabled="False"></TextBlock>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
@@ -66,9 +66,10 @@
                 <Button Content="+" Width="50"></Button>
             </StackPanel>
         </StackPanel>
-        
-        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="2">
+
+        <ListBox x:Name="LBMesage" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="2">
             <TextBlock x:Name="TBMessage" FontSize="20" Text="Тут будут сообщения"></TextBlock>
-        </StackPanel>
+        </ListBox>
+        
     </Grid>
 </Window>

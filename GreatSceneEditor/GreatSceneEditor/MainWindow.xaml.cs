@@ -33,6 +33,8 @@ namespace GreatSceneEditor
 
         public bool IsChanged;
 
+        int Counter = 0;
+
         Scene SelectedScene;
         public MainWindow()
         {
@@ -95,7 +97,17 @@ namespace GreatSceneEditor
             OCScenes.Clear();
             OCScenes = new ObservableCollection<Scene>(SelectedQuest.ListOfScenes);
             SceneList.ItemsSource = OCScenes;
-            q = SelectedQuest;    
+            q = SelectedQuest;
+
+            Scene LastScene = OCScenes.OrderByDescending(S => S.countScene).FirstOrDefault();
+            if(LastScene != null)
+            {
+                Counter = LastScene.countScene + 1;
+            }
+            else
+            {
+                Counter = 0;
+            }
 
             VC1.TBVariantNum.Text = "Вариант 1";
             VC2.TBVariantNum.Text = "Вариант 2";
@@ -118,14 +130,15 @@ namespace GreatSceneEditor
                 return false;
             }
 
-            Scene S = OCScenes.Where(sc => sc.countScene == id).FirstOrDefault();//Вернуться с учителем
-            if(S != null)
-            {
-                message = "Такой ID сцены уже используется";
-                return false;
-            }
+            //Scene S = OCScenes.Where(sc => sc.countScene == id).FirstOrDefault();//Вернуться с учителем
 
-            if(!int.TryParse(VC1.TBID.Text, out id))
+            //if (S != null)
+            //{
+            //    message = "Такой ID сцены уже используется";
+            //    return false;
+            //}
+
+            if (!int.TryParse(VC1.TBID.Text, out id))
             {
                 message = "ID варианта 1 может быть только целым числом";
                 return false;
@@ -188,6 +201,9 @@ namespace GreatSceneEditor
             if(ns.IsCreated)
             {
                 Scene Sc = new Scene();
+                Counter++;
+                Sc.countScene = Counter;
+                //ID.Text = Sc.countScene.ToString();
                 Sc.Title = ns.TBSceneName.Text;
                 q.ListOfScenes.Add(Sc);
 
@@ -349,8 +365,8 @@ namespace GreatSceneEditor
         }
         private void UnblockScene()
         {
-            SceneList.Visibility = Visibility.Visible;
             SPTools.Visibility = Visibility.Visible;
+            SceneList.Visibility = Visibility.Visible;
         }
         public void ChangedP()
         {
@@ -378,15 +394,20 @@ namespace GreatSceneEditor
             
         }
 
-       /* private void TitleOfSelectedItem_TextChanged(object sender, TextChangedEventArgs e)
+        private void ID_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if(SelectedScene == null)
-            {
-                return;
-            }
-            SelectedScene.Title = TitleOfSelectedItem.Text;
 
-        }*/
+        }
+
+        /* private void TitleOfSelectedItem_TextChanged(object sender, TextChangedEventArgs e)
+         {
+             if(SelectedScene == null)
+             {
+                 return;
+             }
+             SelectedScene.Title = TitleOfSelectedItem.Text;
+
+         }*/
         //TODO: Сделать расширение с большим кол-вом вариантов.
     }
 }
