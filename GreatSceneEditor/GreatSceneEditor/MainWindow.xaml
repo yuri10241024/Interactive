@@ -25,6 +25,9 @@
             <Button Name="BTNAddScene" Content="Add Scene" Click="BTNAddScene_Click" Height="20" VerticalAlignment="Top"></Button>
             <Button Content="Delete" ></Button>
         </StackPanel>
+        <StackPanel Grid.Column="2" Grid.Row="1">
+            <TextBox x:Name="TBShowVisual" Text="ShowWindow" FontSize="20" Height="50" Width="250" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></TextBox>
+        </StackPanel>
 
         <ListBox Name="SceneList" DisplayMemberPath="Title" SelectionChanged="SceneList_SelectionChanged" Grid.Row="1"/>
         <StackPanel Grid.Row="1" Grid.Column="1" Name="SPTools">
@@ -64,6 +67,10 @@
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                 <TextBlock Text="Добавить варианты" Margin="0,0,10,0"></TextBlock>
                 <Button Content="+" Width="50"></Button>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <!-- Здесь забобахать юзер koнтрол для саунда-->
             </StackPanel>
         </StackPanel>
 
