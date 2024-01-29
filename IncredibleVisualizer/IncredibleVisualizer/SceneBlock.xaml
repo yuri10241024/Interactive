@@ -6,25 +6,26 @@
              xmlns:local="clr-namespace:IncredibleVisualizer"
              mc:Ignorable="d" 
              d:DesignHeight="480" d:DesignWidth="848">
-    <Grid Background="DarkGray">
+    <Grid Background="DarkGray" Height="120"  Width="212">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition x:Name="Fst" Width="150" ></ColumnDefinition>
+            <ColumnDefinition x:Name="Fst" Width="38" ></ColumnDefinition>
             <ColumnDefinition x:Name="Snd" Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="160"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Background="Beige">
-            <TextBlock x:Name="TBSceneID" Text="10" Height="100" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="75" TextAlignment="Center" Foreground="Black"></TextBlock>
+            <TextBlock x:Name="TBSceneID" Text="10" Height="25" Width="38" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" TextAlignment="Center" Foreground="Black"></TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Background="Beige">
-            <TextBlock x:Name="TBSceneDescription" Text="Qwerty" Height="100" Width="500" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="75" TextAlignment="Center" Foreground="Black"></TextBlock>
+            <TextBlock x:Name="TBSceneDescription" Text="Qwerty" Height="25" Width="162" VerticalAlignment="Center" FontSize="20" TextAlignment="Center" Foreground="Black"></TextBlock>
         </StackPanel>
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Background="LightGoldenrodYellow" Grid.ColumnSpan="2">
-            <TextBox x:Name="TBVar1" Width="800" Height="300" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBox>
-
+        <StackPanel Grid.Row="1" Orientation="Vertical" Background="LightGoldenrodYellow" Grid.ColumnSpan="2">
+            <TextBox x:Name="TBVar1" Width="200" Height="20" Margin="2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Qwerty" FontSize="14"></TextBox>
+            <TextBox x:Name="TBVar2" Width="200" Height="20" Margin="2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Qwerty" FontSize="14"></TextBox>
+            <TextBox x:Name="TBVar3" Width="200" Height="20" Margin="2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Qwerty" FontSize="14"></TextBox>
         </StackPanel>
 
     </Grid>
