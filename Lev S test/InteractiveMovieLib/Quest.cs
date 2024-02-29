@@ -22,5 +22,7 @@ namespace Interactive_moive
             Quest quest = JsonConvert.DeserializeObject<Quest>(File.ReadAllText(fileName));
             return quest;
         }
+
+        
     }
 }

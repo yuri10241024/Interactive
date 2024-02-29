@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="InteractiveMovieLib">
+      <HintPath>..\..\Lev S test\Interactive moive\bin\Debug\InteractiveMovieLib.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -55,6 +58,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BlockScene.cs" />
     <Compile Include="SceneBlock.xaml.cs">
       <DependentUpon>SceneBlock.xaml</DependentUpon>
     </Compile>
