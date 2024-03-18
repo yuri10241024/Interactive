@@ -54,6 +54,9 @@
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                 <CheckBox x:Name="CBIsFinal" Content="Финальная сцена" Click="CBIsFinal_Click"/>
             </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <CheckBox x:Name="CBIsStart" Content="Стартовая сцена" Click="CBIsStart_Click"/>
+            </StackPanel>
             <local:VariantControl x:Name="VC1"/>
 
             <local:VariantControl x:Name="VC2">

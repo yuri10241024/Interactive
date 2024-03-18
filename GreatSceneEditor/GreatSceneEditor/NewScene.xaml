@@ -19,7 +19,7 @@
         
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <Button Name="NSBTNCancel" Click="NSBTNCancel_Click" Content="Cancel" Margin="10" Width="150"></Button>
-            <Button Name="NSBTNCreate" Click="NSBTNCreate_Click" Content="Create" Margin="10" Width="150"></Button>
+            <Button Name="NSBTNCreate" Click="NSBTNCreate_Click" KeyDown="NSBTNCreate_KeyDown" Content="Create" Margin="10" Width="150"></Button>
         </StackPanel>
     </Grid>
 </Window>

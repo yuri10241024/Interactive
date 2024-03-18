@@ -23,8 +23,19 @@ namespace Interactive_moive
         [JsonProperty("IsFinalScene")]
         public bool IsFinalScene { get; set; }
 
+        [JsonProperty("IsStartScene")]
+        public bool IsStartScene { get; set; }
+
         [JsonProperty("intermediateVideo")]
         public string IntermediateVideo { get; set; } //К хардкоду
+
+        [JsonProperty("Lvl")]
+        public int Lvl { get; set; }
+
+        [JsonProperty("missedScenes")]
+        public bool missedScenes { get; set; }
+
+        
 
         public Scene()
         {

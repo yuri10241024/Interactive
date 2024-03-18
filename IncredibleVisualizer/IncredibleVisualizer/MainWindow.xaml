@@ -8,16 +8,10 @@
         Title="MainWindow" Height="1080" Width="1920">
     <Grid>
         <Canvas x:Name="MainCanvas">
-            <local:SceneBlock x:Name="a1_1" Canvas.Top="100" Canvas.Left="860"></local:SceneBlock>
-            <local:SceneBlock x:Name="a2_1" Canvas.Top="300" Canvas.Left="600"></local:SceneBlock>
-            <local:SceneBlock x:Name="a2_2" Canvas.Top="300" Canvas.Left="1100"></local:SceneBlock>
-            <local:SceneBlock x:Name="a3_1" Canvas.Top="500" Canvas.Left="300"></local:SceneBlock>
-            <local:SceneBlock x:Name="a3_2" Canvas.Top="500" Canvas.Left="600"></local:SceneBlock>
-            <local:SceneBlock x:Name="a3_3" Canvas.Top="500" Canvas.Left="860"></local:SceneBlock>
-            <local:SceneBlock x:Name="a3_4" Canvas.Top="500" Canvas.Left="1100"></local:SceneBlock>
-            <local:SceneBlock x:Name="a3_5" Canvas.Top="500" Canvas.Left="860"></local:SceneBlock>
+            
 
-            <local:SceneBlock x:Name="a4_1" Canvas.Top="700" Canvas.Left="860"></local:SceneBlock>
+
+
 
 
         </Canvas>

@@ -151,7 +151,7 @@ namespace GreatSceneEditor
             }
             if (!int.TryParse(VC3.TBID.Text, out id) && VC3.CBTurnOn.IsChecked == true)
             {
-                message = "ID варианта 2 может быть только целым числом";
+                message = "ID варианта 3 может быть только целым числом";
                 return false;
             }
 
@@ -171,9 +171,38 @@ namespace GreatSceneEditor
 
                 SelectedScene.ListOfVariants = new List<Variant>();
 
-                SelectedScene.ListOfVariants.Add(new Variant {
-                TargetID = int.Parse(VC1.TBID.Text),
-                Description = VC1.TBDescription.Text});//Анонимная переменная 
+                if(CBIsFinal.IsChecked == true)
+                {
+                    SelectedScene.IsFinalScene = true;
+                }
+                else
+                {
+                    SelectedScene.IsFinalScene = false;
+                }
+
+                if(CBIsStart.IsChecked == true)
+                {
+                    SelectedScene.IsStartScene = true;
+                }
+                else
+                {
+                    SelectedScene.IsStartScene = false;
+                }
+
+                
+
+                if (VC1.CBTurnOn.IsChecked == true)
+                {
+                    SelectedScene.ListOfVariants.Add(new Variant
+                    {
+                        TargetID = int.Parse(VC1.TBID.Text),
+                        Description = VC1.TBDescription.Text
+                    });//Анонимная переменная 
+                }
+                else
+                {
+                    //SelectedScene.ListOfVariants
+                }
 
                 if(VC2.CBTurnOn.IsChecked == true)
                 {
@@ -273,7 +302,10 @@ namespace GreatSceneEditor
             ID.Text = NewScene.countScene.ToString();   
             MainVideo.Text = NewScene.pathToVideo;
             IntermediateVideo.Text = NewScene.IntermediateVideo;//TODO: cвязка данных title это всё с bindin'гом
-            
+            CBIsStart.IsChecked = NewScene.IsStartScene;
+            CBIsFinal.IsChecked = NewScene.IsFinalScene;
+
+
             if (NewScene.ListOfVariants.Count > 0)
             {
                 VC1.TBID.Text = NewScene.ListOfVariants[0].TargetID.ToString();
@@ -391,12 +423,35 @@ namespace GreatSceneEditor
 
         private void CBIsFinal_Click(object sender, RoutedEventArgs e)
         {
-            
+            if(CBIsFinal.IsChecked == true)
+            {
+                VC1.CBTurnOn.IsChecked = false;
+                VC2.CBTurnOn.IsChecked = false;
+                VC3.CBTurnOn.IsChecked = false;
+                VC1.IsEnabled = false;
+                VC2.IsEnabled = false;
+                VC3.IsEnabled = false;
+            }
+            else
+            {
+                VC1.CBTurnOn.IsChecked = true;
+                VC2.CBTurnOn.IsChecked = false;
+                VC3.CBTurnOn.IsChecked = false;
+                VC1.IsEnabled = true;
+                VC2.IsEnabled = true;
+                VC3.IsEnabled = true;
+            }
+            SaveLastScene();
         }
 
         private void ID_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        private void CBIsStart_Click(object sender, RoutedEventArgs e)
+        {
+            SaveLastScene();
         }
 
         /* private void TitleOfSelectedItem_TextChanged(object sender, TextChangedEventArgs e)

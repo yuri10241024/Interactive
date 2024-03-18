@@ -30,7 +30,6 @@ namespace Interactive_moive
             InitializeComponent();
             //MessageBox.Show(System.Windows.SystemParameters.PrimaryScreenWidth.ToString());
             //MessageBox.Show(System.Windows.SystemParameters.PrimaryScreenHeight.ToString());
-            TestScene2();
         }
         private void AboutUSBTN_Click(object sender, RoutedEventArgs e)
         {
@@ -49,7 +48,6 @@ namespace Interactive_moive
         void TestScene2()
         {
             Scene test1;
-
 
             string str = File.ReadAllText(@"D:\_STUDIOS\VISUAL_STUDIO\Programming\InteractiveMovie\Lev S test\Interactive moive\bin\Debug\testJson.json");
 

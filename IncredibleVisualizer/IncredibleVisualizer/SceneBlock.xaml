@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:IncredibleVisualizer"
              mc:Ignorable="d" 
              d:DesignHeight="480" d:DesignWidth="848">
-    <Grid Background="DarkGray" Height="120"  Width="212">
+    <Grid Background="DarkGray" Height="120"  Width="212" x:Name="MainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="Fst" Width="38" ></ColumnDefinition>
             <ColumnDefinition x:Name="Snd" Width="*"></ColumnDefinition>

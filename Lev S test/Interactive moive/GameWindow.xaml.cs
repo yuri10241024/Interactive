@@ -34,9 +34,8 @@ namespace Interactive_moive
             MainPlayer.MediaEnded += EndVideo;
 
             q = Quest.GetQuest(@"D:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\3.1.json");
-            
+            q.OrganizeScenes();
             ShowScene(GetScene(0));
-
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
