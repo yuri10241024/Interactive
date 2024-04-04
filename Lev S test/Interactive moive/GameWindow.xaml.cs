@@ -84,7 +84,7 @@ namespace Interactive_moive
         
         Scene GetScene(int Num)
         {
-            Scene S = q.ListOfScenes.Where(s => s.countScene == Num).FirstOrDefault();//Что-то на страшном
+            Scene S = q.ListOfScenes.Where(s => s.ID == Num).FirstOrDefault();//Что-то на страшном
             return S;
         }
 

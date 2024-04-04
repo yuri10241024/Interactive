@@ -43,7 +43,6 @@ namespace GreatSceneEditor
 
         private void NSBTNCancel_Click(object sender, RoutedEventArgs e)
         {
-
             IsCreated = false;
             this.Close();
         }

@@ -13,6 +13,8 @@ namespace Interactive_moive
         [JsonProperty("Scenes")]
         public List<Scene> ListOfScenes { get; set; }
 
+        [JsonIgnore]
+        private int[] MaxXLvl;
         public Quest()
         {
             ListOfScenes = new List<Scene>();
@@ -39,16 +41,33 @@ namespace Interactive_moive
             }
         }
 
+        private void SetX()
+        {
+            List<Scene> scenes = GetStartScene();
+            int MaxLvl = -1;
+            for (int i = 0; i < scenes.Count; i++)
+            {
+                if(scenes[i].Lvl > MaxLvl)
+                {
+                    MaxLvl = scenes[i].Lvl;
+                }
+            }
+
+             //   MaxXLvl = new int[];
+            //return;
+        }
+            
         private void SetID(Scene scene)
         {
+            if (scene.IsFinalScene)
+            {
+                return;
+            }
             for(int i = 0; i < scene.ListOfVariants.Count; i++)
             {
-                Scene NextScene = ListOfScenes.Where(s => s.countScene == scene.ListOfVariants[i].TargetID).FirstOrDefault();
-                if (NextScene == null)
-                {
-                    NextScene.missedScenes = true;
-                }
-                if (NextScene.Lvl < scene.Lvl)
+                Scene NextScene = ListOfScenes.Where(s => s.ID == scene.ListOfVariants[i].TargetID).FirstOrDefault();// ищем сцену на которую ведёт этот вариант
+
+                if (NextScene.Lvl < scene.Lvl || NextScene.Lvl == 0)
                 {
                     NextScene.Lvl = scene.Lvl + 1;
                 }
@@ -56,7 +75,7 @@ namespace Interactive_moive
             }
         }
 
-        private List<Scene> GetStartScene()
+        private  List<Scene> GetStartScene()
         {
             List<Scene> scenes = new List<Scene>();
             scenes = ListOfScenes.Where(s => s.IsStartScene == true).ToList();
@@ -67,7 +86,7 @@ namespace Interactive_moive
 /*
             for (int i = 0; i < ListOfScenes.Count; i++)
             {
-                IDs.Add(ListOfScenes[i].countScene);
+                IDs.Add(ListOfScenes[i].ID);
             }
             for (int i = 0; i < ListOfScenes.Count; i++)
             {
@@ -78,7 +97,7 @@ namespace Interactive_moive
             }
             for (int i = 0; i < IDs.Count; i++)
             {
-                Scene s = ListOfScenes.Where(sc => sc.countScene == IDs[i]).FirstOrDefault();// пример linq запроса, like SQL принципы
+                Scene s = ListOfScenes.Where(sc => sc.ID == IDs[i]).FirstOrDefault();// пример linq запроса, like SQL принципы
                 scenes.Add(s);
             }
             return scenes;*/

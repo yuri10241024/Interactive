@@ -99,10 +99,10 @@ namespace GreatSceneEditor
             SceneList.ItemsSource = OCScenes;
             q = SelectedQuest;
 
-            Scene LastScene = OCScenes.OrderByDescending(S => S.countScene).FirstOrDefault();
+            Scene LastScene = OCScenes.OrderByDescending(S => S.ID).FirstOrDefault();
             if(LastScene != null)
             {
-                Counter = LastScene.countScene + 1;
+                Counter = LastScene.ID + 1;
             }
             else
             {
@@ -130,7 +130,7 @@ namespace GreatSceneEditor
                 return false;
             }
 
-            //Scene S = OCScenes.Where(sc => sc.countScene == id).FirstOrDefault();//Вернуться с учителем
+            //Scene S = OCScenes.Where(sc => sc.ID == id).FirstOrDefault();//Вернуться с учителем
 
             //if (S != null)
             //{
@@ -162,13 +162,9 @@ namespace GreatSceneEditor
             if (SelectedScene != null)
             {
                 SelectedScene.Title = TitleOfSelectedItem.Text;
-
-                SelectedScene.countScene = int.Parse(ID.Text);
-
+                SelectedScene.ID = int.Parse(ID.Text);
                 SelectedScene.pathToVideo = MainVideo.Text;
-
                 SelectedScene.IntermediateVideo = IntermediateVideo.Text;
-
                 SelectedScene.ListOfVariants = new List<Variant>();
 
                 if(CBIsFinal.IsChecked == true)
@@ -231,7 +227,7 @@ namespace GreatSceneEditor
             {
                 Scene Sc = new Scene();
                 Counter++;
-                Sc.countScene = Counter;
+                Sc.ID = Counter;
                 //ID.Text = Sc.countScene.ToString();
                 Sc.Title = ns.TBSceneName.Text;
                 q.ListOfScenes.Add(Sc);
@@ -296,15 +292,26 @@ namespace GreatSceneEditor
             }
 
             Scene NewScene = (SceneList.SelectedItem as Scene);//Преобразование в объект новой сцены, т.е. при переключении
+            if (NewScene.IsFinalScene)
+            {
+                VC1.IsEnabled = false;
+                VC2.IsEnabled = false;
+                VC3.IsEnabled = false;
+            }
+            else
+            {
+                VC1.IsEnabled = true;
+                VC2.IsEnabled = true;
+                VC3.IsEnabled = true;
+            }
             SaveLastScene();
             SelectedScene = NewScene;//Совокупность данных
             TitleOfSelectedItem.Text = NewScene.Title;
-            ID.Text = NewScene.countScene.ToString();   
+            ID.Text = NewScene.ID.ToString();   
             MainVideo.Text = NewScene.pathToVideo;
             IntermediateVideo.Text = NewScene.IntermediateVideo;//TODO: cвязка данных title это всё с bindin'гом
             CBIsStart.IsChecked = NewScene.IsStartScene;
             CBIsFinal.IsChecked = NewScene.IsFinalScene;
-
 
             if (NewScene.ListOfVariants.Count > 0)
             {
@@ -370,6 +377,8 @@ namespace GreatSceneEditor
                 VC3.CBTurnOn.IsEnabled = false;
             }
         }
+
+        
         private void VC1_Loaded(object sender, RoutedEventArgs e)
         {
 
@@ -452,6 +461,21 @@ namespace GreatSceneEditor
         private void CBIsStart_Click(object sender, RoutedEventArgs e)
         {
             SaveLastScene();
+        }
+
+        private void BTNDeleteScene_Click(object sender, RoutedEventArgs e)
+        {
+            if (SceneList.SelectedIndex == -1) return;
+            DeleteScene ds = new DeleteScene();
+            ds.ShowDialog();
+            if (ds.IsDeleted == true)
+            {
+                OCScenes.Remove(SceneList.SelectedItem as Scene);
+            }
+            if (ds.IsDeleted == false)
+            {
+                return;
+            }
         }
 
         /* private void TitleOfSelectedItem_TextChanged(object sender, TextChangedEventArgs e)

@@ -21,6 +21,8 @@ namespace IncredibleVisualizer
     /// </summary>
     public partial class SceneBlock : UserControl
     {
+        public int SceneID;
+
         public SceneBlock()
         {
             InitializeComponent();
@@ -28,7 +30,7 @@ namespace IncredibleVisualizer
         public void SetScene(Scene scene)
         {
             TBSceneDescription.Text = scene.Title;
-            TBSceneID.Text = scene.countScene.ToString();
+            TBSceneID.Text = scene.ID.ToString();
             TBVar1.Text = scene.ListOfVariants[0].Description;
             if (scene.ListOfVariants.Count > 1)
             {

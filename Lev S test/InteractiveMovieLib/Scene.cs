@@ -15,7 +15,7 @@ namespace Interactive_moive
         public string pathToVideo { get; set; }
 
         [JsonProperty("Number")]
-        public int countScene { get; set; }
+        public int ID { get; set; }
 
         [JsonProperty("ListOfVariants")]
         public List<Variant> ListOfVariants { get; set; }
@@ -34,8 +34,20 @@ namespace Interactive_moive
 
         [JsonProperty("missedScenes")]
         public bool missedScenes { get; set; }
-
         
+        [JsonIgnore]
+        public bool IsDone;
+
+        [JsonIgnore]
+        public int XStep;
+
+
+
+        //public bool IsParent;
+
+        //public bool IsChild;
+
+
 
         public Scene()
         {
