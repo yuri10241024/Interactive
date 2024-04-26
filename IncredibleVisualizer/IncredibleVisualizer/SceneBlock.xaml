@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Background="Beige">
-            <TextBlock x:Name="TBSceneID" Text="10" Height="25" Width="38" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" TextAlignment="Center" Foreground="Black"></TextBlock>
+            <TextBlock MouseDown="TBSceneID_MouseDown" x:Name="TBSceneID" Text="10" Height="25" Width="38" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" TextAlignment="Center" Foreground="Black"></TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Background="Beige">
             <TextBlock x:Name="TBSceneDescription" Text="Qwerty" Height="25" Width="162" VerticalAlignment="Center" FontSize="20" TextAlignment="Center" Foreground="Black"></TextBlock>

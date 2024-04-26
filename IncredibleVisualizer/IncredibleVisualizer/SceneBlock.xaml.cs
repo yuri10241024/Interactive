@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Interactive_moive;
+using System.Diagnostics;
+
 
 namespace IncredibleVisualizer
 {
@@ -40,6 +42,11 @@ namespace IncredibleVisualizer
             {
                 TBVar3.Text = scene.ListOfVariants[2].Description;
             }
+        }
+
+        private void TBSceneID_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Process.Start("Notion.exe");
         }
     }
 }

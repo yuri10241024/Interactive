@@ -19,7 +19,7 @@
         </Style>
     </Window.Resources>
     
-    <Grid>
+    <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="350"></ColumnDefinition>
@@ -77,7 +77,7 @@
         </Border>
 
         <Border Grid.Column="1" Margin="0, 200, 0, 0">
-            <Button x:Name="BTNDiscription" Content="Прочитать описание" Width="220" Height="70" HorizontalContentAlignment="Center" Foreground="DarkGray">
+            <Button x:Name="BTNDiscription" Content="Прочитать описание" Width="220" Height="70" HorizontalContentAlignment="Center" Foreground="DarkGray" Click="BTNDiscription_Click">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
                         <Setter Property="Background" Value="BlanchedAlmond"/>
@@ -124,24 +124,24 @@
                     </EventTrigger>
                 </Border.Triggers>
             <Button Click="AboutUSBTN_Click" x:Name="AboutUSBTN" Background="Black" Content="О нас" Width="220" Height="70" HorizontalContentAlignment="Center" Foreground="DarkGray">
-                <Button.Style>
-                    <Style TargetType="{x:Type Button}">
-                        <Setter Property="Background" Value="BlanchedAlmond"/>
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="{x:Type Button}">
-                                    <Border Background="{TemplateBinding Background}">
-                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="DarkGoldenrod"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="BlanchedAlmond"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="DarkGoldenrod"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
                 </Button.Style>
             </Button>
         </Border>

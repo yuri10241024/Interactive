@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:GreatSceneEditor"
         mc:Ignorable="d"
         Title="NewProject" WindowState="Maximized" Height="1080" Width="1920" KeyDown="Window_KeyDown">
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="500"/>
@@ -17,6 +18,7 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="200"></RowDefinition>
         </Grid.RowDefinitions>
+        
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="0">
             <Button Name="BTNNew"  Content="New" Click="BTNNew_Click"></Button>

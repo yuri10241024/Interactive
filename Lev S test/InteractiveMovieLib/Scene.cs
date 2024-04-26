@@ -34,14 +34,21 @@ namespace Interactive_moive
 
         [JsonProperty("missedScenes")]
         public bool missedScenes { get; set; }
-        
+
+        [JsonIgnore]
+        public List<Scene> IzolatedChildrenScenes = new List<Scene>();
+
         [JsonIgnore]
         public bool IsDone;
 
         [JsonIgnore]
-        public int XStep;
+        public float XStep;
 
+        [JsonIgnore]
+        public List<Scene> AllChildren = new List<Scene>();
 
+        [JsonIgnore]
+        public int ChildrenAmount;
 
         //public bool IsParent;
 

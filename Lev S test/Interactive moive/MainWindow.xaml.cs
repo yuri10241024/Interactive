@@ -24,7 +24,7 @@ namespace Interactive_moive
     public partial class MainWindow : Window
     {
 
-        public string PathToProject = @"D:\_STUDIOS\VISUAL_STUDIO\Programming\InteractiveMovie\Lev S test";
+        public string PathToProject = @"D:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\DefeatYourFriend.json";
         public MainWindow()
         {
             InitializeComponent();
@@ -45,14 +45,9 @@ namespace Interactive_moive
             MessageBox.Show("Спасибо за внимание");
         }
 
-        void TestScene2()
+        private void BTNDiscription_Click(object sender, RoutedEventArgs e)
         {
-            Scene test1;
 
-            string str = File.ReadAllText(@"D:\_STUDIOS\VISUAL_STUDIO\Programming\InteractiveMovie\Lev S test\Interactive moive\bin\Debug\testJson.json");
-
-            test1 = JsonConvert.DeserializeObject<Scene>(str);
-        
         }
     }
 }

@@ -26,7 +26,7 @@ namespace Interactive_moive
             return quest;
         }
 
-        public void OrganizeScenes()
+        public void OrganizeScenesByLvl()
         {
             //1. Ищем корневую сцену
             //2. Находим все дочерние сцены
@@ -40,23 +40,69 @@ namespace Interactive_moive
                 SetID(startScenes[i]);
             }
         }
-
-        private void SetX()
+        private void SetX(Scene scene)
         {
-            List<Scene> scenes = GetStartScene();
-            int MaxLvl = -1;
-            for (int i = 0; i < scenes.Count; i++)
+            if (scene.IsFinalScene)
             {
-                if(scenes[i].Lvl > MaxLvl)
+                return;
+            }
+            for (int i = 0; i < scene.ListOfVariants.Count; i++)
+            {
+                Scene NextScene = ListOfScenes.Where(s => s.ID == scene.ListOfVariants[i].TargetID).FirstOrDefault();
+                if (NextScene.IsDone)
                 {
-                    MaxLvl = scenes[i].Lvl;
+                    continue;
                 }
             }
-
-             //   MaxXLvl = new int[];
-            //return;
         }
-            
+        public void OrganizeScenesByX()
+        {
+            List<Scene> StartScenes = GetStartScene();
+            for(int i = 0; i < StartScenes.Count; i++)
+            {
+                FindIzolateChildren(StartScenes[i]);
+            }
+        }
+
+        public void FindIzolateChildren(Scene ParentScene)
+        {
+            if (ParentScene.IsFinalScene == false)
+            {
+                ParentScene.ChildrenAmount = ParentScene.IzolatedChildrenScenes.Count;
+                int TMPChildren = 0;
+                for (int i = 0; i < ParentScene.IzolatedChildrenScenes.Count; i++)
+                {
+                    FindIzolateChildren(ParentScene.IzolatedChildrenScenes[i]);
+                    TMPChildren += ParentScene.IzolatedChildrenScenes[i].ChildrenAmount;
+                    //Scene scChild = ListOfScenes.Where(s => s.ID == ParentScene.ListOfVariants[i].TargetID).FirstOrDefault();
+                    //if (scChild.IsDone != true && scChild != null)
+                    //{
+                    //    ReachableScenes.Add(scChild);
+                    //    scChild.IsDone = true;
+                    //    FindIzolateChildren(scChild, ReachableScenes);
+                    //}
+                    //ParentScene.IzolatedChildrenScenes.Add(scChild);
+                }
+                if (ParentScene.ChildrenAmount < TMPChildren)
+                {
+                    ParentScene.ChildrenAmount = TMPChildren;
+                }
+            }   
+            else
+            {
+                ParentScene.ChildrenAmount = 1;
+                return;
+            }
+        }
+        public void FindAllIzolateChildren()
+        {
+            List<Scene> StartScenes = GetStartScene();
+            for(int i = 0; i < StartScenes.Count; i++)
+            {
+                FindIzolateChildren(StartScenes[i]);
+
+            }
+        }
         private void SetID(Scene scene)
         {
             if (scene.IsFinalScene)
@@ -102,3 +148,15 @@ namespace Interactive_moive
             }
             return scenes;*/
 // string q = @"D:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\3.1.json"
+
+
+
+//List<Scene> scenes = GetStartScene();
+//int MaxLvl = -1;
+//for (int i = 0; i < scenes.Count; i++)
+//{
+//    if (scenes[i].Lvl > MaxLvl)
+//    {
+//        MaxLvl = scenes[i].Lvl;
+//    }
+//}

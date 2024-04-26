@@ -29,9 +29,15 @@ namespace IncredibleVisualizer
         public MainWindow()
         {
             InitializeComponent();
-            quest = Quest.GetQuest(@"D:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\ChessBattle1.json");
-            quest.OrganizeScenes();
+            quest = Quest.GetQuest(@"D:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\inst 1.json");
+            quest.OrganizeScenesByLvl();
+            quest.OrganizeScenesByX();
+            quest.FindAllIzolateChildren();
             ShowQuest(quest);// Да будет шоу!!!
+        }
+        private void Vizualize()
+        {
+
         }
 
         void ShowQuest(Quest quest)
@@ -40,7 +46,7 @@ namespace IncredibleVisualizer
             int CurLvl = 0;
             while (true)
             {
-                scenes = quest.ListOfScenes.Where(s => s.Lvl == CurLvl).ToList();// Преобразование в список(возвращает )
+                scenes = quest.ListOfScenes.Where(s => s.Lvl == CurLvl).ToList();// Преобразование в список(возвращает)
                 if (scenes.Count == 0)
                 {
                     break;
@@ -48,8 +54,8 @@ namespace IncredibleVisualizer
                 int left = 0;
                 for (int i = 0; i < scenes.Count; i++)
                 {
-                    MakeBlock(scenes[i], left, CurLvl * 150);
-                    left += 240;
+                    MakeBlock(scenes[i], left, CurLvl * 175);
+                    left += 250;
                 }
                 CurLvl++;
             }
@@ -75,9 +81,6 @@ namespace IncredibleVisualizer
             MainCanvas.Children.Add(line);  
             Panel.SetZIndex(line, -5);
         }
-
-        //private void GetXCords(SceneBlock sc1)
-
         private void MakeLines()// эта функци знает всё!
         {
             List<Scene> scenes = quest.ListOfScenes.Where(s => s.IsStartScene).ToList();
