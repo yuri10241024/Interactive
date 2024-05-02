@@ -24,7 +24,7 @@ namespace Interactive_moive
     public partial class MainWindow : Window
     {
 
-        public string PathToProject = @"D:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\DefeatYourFriend.json";
+        public string PathToProject = @"D:\ABOBA.json";
         public MainWindow()
         {
             InitializeComponent();
@@ -48,6 +48,11 @@ namespace Interactive_moive
         private void BTNDiscription_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void StackPanel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("Settings are coming soon");
         }
     }
 }

@@ -46,7 +46,7 @@ namespace IncredibleVisualizer
 
         private void TBSceneID_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Process.Start("Notion.exe");
+            Process.Start(@"D:\_STUDIOS\VISUAL_STUDIO\Programming\InteractiveMovie\GreatSceneEditor\GreatSceneEditor\bin\Debug\GreatSceneEditor.exe");
         }
     }
 }

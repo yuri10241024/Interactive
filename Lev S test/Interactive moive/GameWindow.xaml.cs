@@ -33,7 +33,7 @@ namespace Interactive_moive
             InitializeComponent();
             MainPlayer.MediaEnded += EndVideo;
 
-            q = Quest.GetQuest(@"D:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\3.1.json");
+            q = Quest.GetQuest(@"D:\qwerty.json");
             q.OrganizeScenesByLvl();
             ShowScene(GetScene(0));
         }

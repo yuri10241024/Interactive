@@ -60,7 +60,33 @@ namespace Interactive_moive
             List<Scene> StartScenes = GetStartScene();
             for(int i = 0; i < StartScenes.Count; i++)
             {
-                FindIzolateChildren(StartScenes[i]);
+                GetIzolateChildrenCount(StartScenes[i]);
+            }
+        }
+        public void GetIzolateChildrenCount(Scene scene)
+        {
+            if (scene.IsFinalScene == false)
+            {
+                scene.ChildrenAmount = scene.IzolatedChildrenScenes.Count;
+                for (int i = 0; i < scene.IzolatedChildrenScenes.Count; i++)
+                {
+                    GetIzolateChildrenCount(scene.IzolatedChildrenScenes[i]);
+                    scene.ChildrenAmount += scene.IzolatedChildrenScenes[i].ChildrenAmount;
+                }
+            }
+            else
+            {
+                scene.ChildrenAmount = 0;
+                return;
+            }
+        }
+
+        public void GetAllIzolatedChildrenCount()
+        {
+            List<Scene> scenes = GetStartScene();
+            for(int i = 0; i < scenes.Count; i++)
+            {
+                GetIzolateChildrenCount(scenes[i]);
             }
         }
 
@@ -68,39 +94,24 @@ namespace Interactive_moive
         {
             if (ParentScene.IsFinalScene == false)
             {
-                ParentScene.ChildrenAmount = ParentScene.IzolatedChildrenScenes.Count;
-                int TMPChildren = 0;
-                for (int i = 0; i < ParentScene.IzolatedChildrenScenes.Count; i++)
+                for (int i = 0; i < ParentScene.ListOfVariants.Count; i++)
                 {
-                    FindIzolateChildren(ParentScene.IzolatedChildrenScenes[i]);
-                    TMPChildren += ParentScene.IzolatedChildrenScenes[i].ChildrenAmount;
-                    //Scene scChild = ListOfScenes.Where(s => s.ID == ParentScene.ListOfVariants[i].TargetID).FirstOrDefault();
-                    //if (scChild.IsDone != true && scChild != null)
-                    //{
-                    //    ReachableScenes.Add(scChild);
-                    //    scChild.IsDone = true;
-                    //    FindIzolateChildren(scChild, ReachableScenes);
-                    //}
-                    //ParentScene.IzolatedChildrenScenes.Add(scChild);
+                    Scene scChild = ListOfScenes.Where(s => s.ID == ParentScene.ListOfVariants[i].TargetID).FirstOrDefault();
+                    if (scChild != null && !scChild.IsDone)
+                    {
+                        ParentScene.IzolatedChildrenScenes.Add(scChild);
+                        scChild.IsDone = true;
+                    }
+                    FindIzolateChildren(scChild);
                 }
-                if (ParentScene.ChildrenAmount < TMPChildren)
-                {
-                    ParentScene.ChildrenAmount = TMPChildren;
-                }
-            }   
-            else
-            {
-                ParentScene.ChildrenAmount = 1;
-                return;
             }
         }
         public void FindAllIzolateChildren()
         {
             List<Scene> StartScenes = GetStartScene();
-            for(int i = 0; i < StartScenes.Count; i++)
+            for (int i = 0; i < StartScenes.Count; i++)
             {
                 FindIzolateChildren(StartScenes[i]);
-
             }
         }
         private void SetID(Scene scene)

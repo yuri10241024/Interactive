@@ -30,9 +30,11 @@ namespace IncredibleVisualizer
         {
             InitializeComponent();
             quest = Quest.GetQuest(@"D:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\inst 1.json");
+
             quest.OrganizeScenesByLvl();
             quest.OrganizeScenesByX();
             quest.FindAllIzolateChildren();
+            quest.GetAllIzolatedChildrenCount();
             ShowQuest(quest);// Да будет шоу!!!
         }
         private void Vizualize()
