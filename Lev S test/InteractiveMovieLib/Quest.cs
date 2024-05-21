@@ -89,7 +89,7 @@ namespace Interactive_moive
                 GetIzolateChildrenCount(scenes[i]);
             }
         }
-
+        
         public void FindIzolateChildren(Scene ParentScene)
         {
             if (ParentScene.IsFinalScene == false)
