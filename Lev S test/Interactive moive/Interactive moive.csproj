@@ -118,5 +118,29 @@
       <Name>InteractiveMovieLib</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="DSCF6378.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="DSCF6363.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="DSCF4341.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Gear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="2699.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="DSCF4594.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="1674293774_catherineasquithgallery-com-p-fon-gryazno-serii-foto-207.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="1674262446_catherineasquithgallery-com-p-sero-belii-fon-dlya-prezentatsii-foto-71.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

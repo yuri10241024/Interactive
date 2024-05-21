@@ -26,18 +26,16 @@ namespace Interactive_moive
 
         Scene CurrentScene;
         public bool IsMain;
-
-        Quest q = new Quest();
+        Quest q  = new Quest();
 
         public GameWindow()
         {
             InitializeComponent();
             MainPlayer.MediaEnded += EndVideo;
 
-            q = JsonConvert.DeserializeObject<Quest>(File.ReadAllText(@"D:\_STUDIOS\VISUAL_STUDIO\Programming\Видео для программирования\Тест для ИФ123_1\Готовое\3.1.json"));
-            
+            q = Quest.GetQuest(@"D:\qwerty.json");
+            q.OrganizeScenesByLvl();
             ShowScene(GetScene(0));
-
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -86,7 +84,7 @@ namespace Interactive_moive
         
         Scene GetScene(int Num)
         {
-            Scene S = q.ListOfScenes.Where(s => s.countScene == Num).FirstOrDefault();//Что-то на страшном
+            Scene S = q.ListOfScenes.Where(s => s.ID == Num).FirstOrDefault();//Что-то на страшном
             return S;
         }
 

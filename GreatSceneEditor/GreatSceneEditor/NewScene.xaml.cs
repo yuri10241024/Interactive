@@ -43,9 +43,21 @@ namespace GreatSceneEditor
 
         private void NSBTNCancel_Click(object sender, RoutedEventArgs e)
         {
-
             IsCreated = false;
             this.Close();
+        }
+
+        private void NSBTNCreate_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                NSBTNCreate_Click(sender, e);
+            }
+            else
+            {
+                return;
+            }
+            
         }
     }
 }

@@ -45,7 +45,6 @@ namespace GreatSceneEditor
         {
             CBChecked();
         }
-
         void CBChecked()
         {
             if (CBTurnOn.IsChecked == true)
@@ -65,7 +64,6 @@ namespace GreatSceneEditor
                 }
             }
         }
-
         private void CBTurnOn_Checked(object sender, RoutedEventArgs e)
         {
             CBChecked();
